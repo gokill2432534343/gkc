@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GKC: free Dead by Daylight overlay and ReShade tool</title>
+    <meta
+      name="description"
+      content="GKC is a free Windows toolkit for Dead by Daylight: a map overlay with call-out layouts, ReShade presets that switch per map, a 1v1 timer and more. Unofficial fan project."
+    />
+    <link rel="canonical" href="https://gokill2432534343.github.io/gkc/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GKC: free Dead by Daylight overlay and ReShade tool" />
+    <meta
+      property="og:description"
+      content="Map overlay with call-out layouts, ReShade presets per map, 1v1 timer. Free and non-commercial."
+    />
+    <meta property="og:image" content="https://gokill2432534343.github.io/gkc/social-preview.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <style>
+      :root {
+        --bg: #111113;
+        --card: #18181b;
+        --line: #26262b;
+        --text: #ececef;
+        --text2: #a1a1a9;
+        --text3: #6e6e77;
+        --accent: #c0414a;
+        --accent-soft: #e0777e;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font:
+          16px/1.6 'Segoe UI',
+          system-ui,
+          -apple-system,
+          Roboto,
+          Arial,
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: var(--accent-soft);
+      }
+      .wrap {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      header {
+        padding: 88px 0 56px;
+        border-bottom: 1px solid var(--line);
+        background: radial-gradient(600px 300px at 0% 100%, rgba(192, 65, 74, 0.18), transparent);
+      }
+      h1 {
+        font-size: clamp(56px, 12vw, 104px);
+        line-height: 1;
+        letter-spacing: -0.04em;
+        font-weight: 700;
+        border-left: 6px solid var(--accent);
+        padding-left: 20px;
+      }
+      .lead {
+        margin-top: 22px;
+        font-size: clamp(20px, 3.4vw, 28px);
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        max-width: 620px;
+      }
+      .sub {
+        margin-top: 10px;
+        color: var(--text2);
+        max-width: 620px;
+      }
+      .btn {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 13px 24px;
+        border-radius: 10px;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .btn:hover {
+        background: #cf4f58;
+      }
+      .small {
+        margin-top: 12px;
+        color: var(--text3);
+        font-size: 14px;
+      }
+      section {
+        padding: 44px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      h2 {
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text3);
+        margin-bottom: 18px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 12px;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 16px;
+      }
+      .card b {
+        display: block;
+        margin-bottom: 4px;
+      }
+      .card span {
+        color: var(--text2);
+        font-size: 15px;
+      }
+      ol,
+      ul {
+        padding-left: 22px;
+        color: var(--text2);
+      }
+      li {
+        margin: 6px 0;
+      }
+      li b {
+        color: var(--text);
+      }
+      footer {
+        padding: 36px 0 56px;
+        color: var(--text3);
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <h1>GKC</h1>
+        <p class="lead">A free toolkit for Dead by Daylight players</p>
+        <p class="sub">
+          A map overlay with call-out layouts, ReShade presets that switch for every map, a 1v1
+          timer and a few more small tools, in one Windows app.
+        </p>
+        <a class="btn" href="https://github.com/gokill2432534343/gkc/releases/latest"
+          >Download for Windows</a
+        >
+        <p class="small">Free and non-commercial. Windows 10 or 11 (64-bit).</p>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section>
+        <h2>What it does</h2>
+        <div class="grid">
+          <div class="card">
+            <b>Map overlay</b
+            ><span
+              >Call-out layouts of the current map on top of the game. Detected for you or picked by
+              hand. Movable, resizable, click-through.</span
+            >
+          </div>
+          <div class="card">
+            <b>ReShade presets per map</b
+            ><span
+              >Pick a ReShade look for each map and GKC switches to it when the map changes. You
+              press ReShade's own reload key.</span
+            >
+          </div>
+          <div class="card">
+            <b>1v1 timer</b
+            ><span>Names, score and timers for 1v1 matches, with different looks.</span>
+          </div>
+          <div class="card">
+            <b>And more</b
+            ><span
+              >Streak tracker, crosshair, timers, perk and killer randomizers, build creator, stream
+              overlays for OBS, backup.</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Install</h2>
+        <ol>
+          <li>
+            Open the
+            <a href="https://github.com/gokill2432534343/gkc/releases/latest">latest release</a> and
+            download <b>gkc-…-setup.exe</b>.
+          </li>
+          <li>
+            Run it. Windows may show <b>"Windows protected your PC"</b> because the app is not
+            code-signed yet. Click <b>More info</b>, then <b>Run anyway</b>.
+          </li>
+          <li>Start GKC from the desktop shortcut. New versions are offered inside the app.</li>
+        </ol>
+        <p class="small">
+          Tip: fullscreen games usually need borderless windowed mode for any overlay to be visible.
+        </p>
+      </section>
+
+      <section>
+        <h2>What GKC does and does not do</h2>
+        <ul>
+          <li>It does not read the game's memory, inject code, press keys or move your mouse.</li>
+          <li>
+            The map is read from a screenshot of your main screen. Hotkeys use the normal Windows
+            shortcut system.
+          </li>
+          <li>
+            Your settings stay on your own PC. GKC only goes online to look for updates on GitHub,
+            to download map text data once, and when you choose to send an idea.
+          </li>
+          <li>No ads, no accounts, no payments.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Links</h2>
+        <ul>
+          <li>
+            <a href="https://github.com/gokill2432534343/gkc">Source code and README on GitHub</a>
+          </li>
+          <li><a href="https://github.com/gokill2432534343/gkc/releases">All releases</a></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        GKC is an independent fan project. It is not affiliated with, endorsed by or sponsored by
+        Behaviour Interactive. Dead by Daylight and its artwork belong to Behaviour Interactive. Map
+        layout images by Lethia, shared by Hens333 and used with his permission. Licensed under the
+        PolyForm Noncommercial License 1.0.0. Copyright (c) 2026 gokill.
+      </div>
+    </footer>
+  </body>
+</html>

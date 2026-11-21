@@ -1,5 +1,7 @@
 # GKC
 
+[![Download GKC](https://img.shields.io/github/v/release/gokill2432534343/gkc?label=Download&style=for-the-badge&color=c0414a)](https://github.com/gokill2432534343/gkc/releases/latest)
+
 A free toolkit for Dead by Daylight players on Windows: a map overlay with call-out layouts, ReShade presets that switch per map, a 1v1 timer, and a few more small tools in one app.
 
 GKC is an independent fan project. It is not affiliated with, endorsed by or sponsored by Behaviour Interactive. GKC is free and non-commercial, with no payments or donations, and Dead by Daylight artwork belongs to Behaviour Interactive.
