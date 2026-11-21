@@ -1,0 +1,10 @@
+{
+  "id": "stream-overlays",
+  "name": "Stream overlays",
+  "description": "Show the 1v1 timer, scoreboard, streak, timers and map in OBS as browser sources.",
+  "category": "overlay",
+  "icon": "broadcast",
+  "version": "1.0.0",
+  "updated": "2026-11-07",
+  "advanced": true
+}

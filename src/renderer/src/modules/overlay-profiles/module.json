@@ -1,0 +1,10 @@
+{
+  "id": "overlay-profiles",
+  "name": "Overlay profiles",
+  "description": "Save whole overlay setups, like Killer and Survivor, and switch between them with one click or a hotkey.",
+  "category": "overlay",
+  "icon": "adjustments",
+  "version": "1.0.0",
+  "updated": "2026-11-08",
+  "advanced": true
+}

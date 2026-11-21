@@ -1,0 +1,10 @@
+{
+  "id": "multi-timers",
+  "name": "Multi timers",
+  "description": "Several named countdown timers (hooks, perks, anything) that run at the same time.",
+  "category": "overlay",
+  "icon": "stopwatch",
+  "version": "1.0.0",
+  "updated": "2026-11-07",
+  "advanced": true
+}

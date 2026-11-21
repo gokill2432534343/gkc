@@ -1,0 +1,9 @@
+{
+  "id": "map-detection",
+  "name": "Map detection",
+  "description": "Read the map from the screen, or pick it yourself, and show its layout on the overlay.",
+  "category": "maps",
+  "icon": "map",
+  "version": "0.2.0",
+  "updated": "2026-11-13"
+}

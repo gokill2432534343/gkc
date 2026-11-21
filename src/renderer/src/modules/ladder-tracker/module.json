@@ -1,0 +1,10 @@
+{
+  "id": "ladder-tracker",
+  "name": "Ladder tracker",
+  "description": "Keep your ladder rank, points and match results, and show them on stream.",
+  "category": "competitive",
+  "icon": "trophy",
+  "version": "1.0.0",
+  "updated": "2026-11-07",
+  "advanced": true
+}

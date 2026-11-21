@@ -1,0 +1,10 @@
+{
+  "id": "unhook-timer",
+  "name": "Unhook timer",
+  "description": "Killer: a countdown for a survivor who was just unhooked, started by hotkey or by watching the screen.",
+  "category": "competitive",
+  "icon": "stopwatch",
+  "version": "0.2.0",
+  "updated": "2026-11-10",
+  "advanced": true
+}

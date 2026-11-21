@@ -1,0 +1,8 @@
+{
+  "id": "killer-randomizer",
+  "name": "Killer randomizer",
+  "description": "Roll a random killer to play next.",
+  "category": "build-tools",
+  "icon": "ghost",
+  "version": "1.0.0"
+}

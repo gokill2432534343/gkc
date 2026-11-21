@@ -1,0 +1,10 @@
+{
+  "id": "match-results",
+  "name": "Match results",
+  "description": "Track a tournament or league match set by set and show the result in OBS.",
+  "category": "competitive",
+  "icon": "trophy",
+  "version": "1.0.0",
+  "updated": "2026-11-08",
+  "advanced": true
+}

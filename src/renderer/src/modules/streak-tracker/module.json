@@ -1,0 +1,9 @@
+{
+  "id": "streak-tracker",
+  "name": "Streak tracker",
+  "description": "Win and loss counter with streaks and personal bests for killer and survivor.",
+  "category": "competitive",
+  "icon": "trophy",
+  "version": "1.0.0",
+  "updated": "2026-11-07"
+}

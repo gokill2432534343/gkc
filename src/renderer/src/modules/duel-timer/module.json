@@ -1,0 +1,9 @@
+{
+  "id": "duel-timer",
+  "name": "1v1 timer",
+  "description": "Two stopwatches with names and scores for 1v1 matches, also on the overlay.",
+  "category": "competitive",
+  "icon": "swords",
+  "version": "1.0.0",
+  "updated": "2026-11-07"
+}

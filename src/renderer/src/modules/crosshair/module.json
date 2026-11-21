@@ -1,0 +1,9 @@
+{
+  "id": "crosshair",
+  "name": "Crosshair",
+  "description": "Show a custom crosshair in the middle of your screen.",
+  "category": "maps",
+  "icon": "crosshair",
+  "version": "1.0.0",
+  "updated": "2026-11-07"
+}

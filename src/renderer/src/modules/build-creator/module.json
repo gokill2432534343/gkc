@@ -1,0 +1,9 @@
+{
+  "id": "build-creator",
+  "name": "Build creator",
+  "description": "Pick four perks, name your build and save it for later.",
+  "category": "build-tools",
+  "icon": "adjustments",
+  "version": "1.0.0",
+  "updated": "2026-11-07"
+}

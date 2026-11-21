@@ -1,0 +1,17 @@
+node_modules
+dist
+out
+.DS_Store
+.eslintcache
+*.log*
+
+backups/
+_to_delete/
+src/renderer/src/content/maps-private/*
+!src/renderer/src/content/maps-private/README.md
+
+# local video clips
+clips/
+
+# build cache
+*.tsbuildinfo

@@ -1,0 +1,9 @@
+{
+  "id": "timer",
+  "name": "Timer",
+  "description": "Countdown timer for 1v1s, matches and scrims.",
+  "category": "overlay",
+  "icon": "stopwatch",
+  "version": "1.0.0",
+  "updated": "2026-11-07"
+}

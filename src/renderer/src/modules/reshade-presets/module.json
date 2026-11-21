@@ -1,0 +1,10 @@
+{
+  "id": "reshade-presets",
+  "name": "ReShade presets",
+  "description": "Choose one of your own ReShade presets for every map. GKC writes the right one when a map is found, you press your ReShade reload key once.",
+  "category": "maps",
+  "icon": "palette",
+  "version": "0.3.0",
+  "updated": "2026-11-16",
+  "advanced": true
+}
