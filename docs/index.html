@@ -95,6 +95,17 @@
         color: var(--text3);
         font-size: 14px;
       }
+      .shots {
+        display: grid;
+        gap: 14px;
+      }
+      .shots img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+      }
       section {
         padding: 44px 0;
         border-bottom: 1px solid var(--line);
@@ -160,6 +171,15 @@
     </header>
 
     <main class="wrap">
+      <section>
+        <h2>See it</h2>
+        <div class="shots">
+          <img src="screenshots/overlay-map.jpg" alt="The GKC map overlay in the top left corner of the game, showing the call-out layout of Rancid Abattoir" loading="lazy" />
+          <img src="screenshots/overlay-hooks.jpg" alt="The overlay during a match" loading="lazy" />
+          <img src="screenshots/home.jpg" alt="The GKC home page" loading="lazy" />
+        </div>
+      </section>
+
       <section>
         <h2>What it does</h2>
         <div class="grid">

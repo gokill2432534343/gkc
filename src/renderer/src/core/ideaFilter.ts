@@ -44,12 +44,12 @@ export function checkIdea(raw: string): IdeaCheck {
     return { ok: false, reason: 'Please keep it under ' + MAX_LENGTH + ' characters.' }
   }
   if (/(https?:\/\/|www\.|\.com\b|\.gg\b|discord\.)/i.test(text)) {
-    return { ok: false, reason: 'Please leave out links and describe the idea in words.' }
+    return { ok: false, reason: 'Please leave out links and describe it in words.' }
   }
 
   const words = text.toLowerCase().match(/[\p{L}']+/gu) ?? []
   if (words.length < 5) {
-    return { ok: false, reason: 'Please use a few full sentences so I understand the idea.' }
+    return { ok: false, reason: 'Please use a few full sentences so I understand your message.' }
   }
 
   const letters = (text.match(/\p{L}/gu) ?? []).length
@@ -62,7 +62,7 @@ export function checkIdea(raw: string): IdeaCheck {
   if (jokePatterns.some((pattern) => pattern.test(text))) {
     return {
       ok: false,
-      reason: 'This looks like a test text. Describe what you would like to see.'
+      reason: 'This looks like a test text. Describe what you would like to see or ask.'
     }
   }
 
@@ -72,11 +72,11 @@ export function checkIdea(raw: string): IdeaCheck {
   if (words.length >= 8 && most / words.length > 0.4) {
     return {
       ok: false,
-      reason: 'The same word repeats too often. Please describe the idea in your own words.'
+      reason: 'The same word repeats too often. Please describe it in your own words.'
     }
   }
   if (words.length >= 8 && counts.size / words.length < 0.35) {
-    return { ok: false, reason: 'Please write the idea with more different words.' }
+    return { ok: false, reason: 'Please write it with more different words.' }
   }
 
   const longWords = words.filter((word) => word.length > 18).length
@@ -120,13 +120,13 @@ export function checkLimits(text: string): IdeaCheck {
   const sent = readSent()
   const normalized = text.toLowerCase().replace(/\s+/g, ' ').trim()
   if (sent.some((item) => item.text === normalized)) {
-    return { ok: false, reason: 'You already sent this idea. Thank you!' }
+    return { ok: false, reason: 'You already sent this message. Thank you!' }
   }
   if (sent.some((item) => now - item.at < 60_000)) {
-    return { ok: false, reason: 'Please wait a minute before sending another idea.' }
+    return { ok: false, reason: 'Please wait a minute before sending another message.' }
   }
   if (sent.filter((item) => now - item.at < 86_400_000).length >= 5) {
-    return { ok: false, reason: 'That is enough ideas for today. Please come back tomorrow.' }
+    return { ok: false, reason: 'That is enough messages for today. Please come back tomorrow.' }
   }
   return { ok: true }
 }

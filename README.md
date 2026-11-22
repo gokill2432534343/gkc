@@ -14,6 +14,14 @@ GKC is an independent fan project. It is not affiliated with, endorsed by or spo
 
 Windows 10 or 11 (64-bit) only.
 
+## Screenshots
+
+![The GKC map overlay in the top left corner of the game, showing the call-out layout of Rancid Abattoir](docs/screenshots/overlay-map.jpg)
+
+![The overlay in a match with the Rancid Abattoir layout](docs/screenshots/overlay-hooks.jpg)
+
+![The GKC home page](docs/screenshots/home.jpg)
+
 ## What it does
 
 - **Map overlay:** shows a call-out layout of the current map on top of the game. GKC can detect the map for you or you pick it by hand. Drag the overlay anywhere, change its size and transparency, and turn click-through on so clicks go to the game.
