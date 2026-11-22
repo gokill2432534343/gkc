@@ -1,6 +1,6 @@
 {
   "name": "gkc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "GKC, a toolkit for Dead by Daylight players",
   "main": "./out/main/index.js",
   "author": "gokill",
