@@ -63,7 +63,8 @@ function MapDetection(): React.JSX.Element {
             (set it in Settings, Hotkeys). GKC takes a screenshot of your primary monitor, reads the
             map name and switches the map layout and prepares the ReShade preset (then you press
             your ReShade reload key). Run the game in windowed or borderless mode. English game
-            language only for now.
+            language only for now. The first detection downloads the English text data once, so it
+            needs internet.
           </p>
           <div className="timer-actions">
             <button
@@ -77,33 +78,9 @@ function MapDetection(): React.JSX.Element {
           <div className={'hotkey-error' + (state.error ? '' : ' ok')}>{state.message}</div>
           {state.last && (
             <p className="timer-hint">
-              Last map: {state.last.name} ({state.last.realm}){state.last.auto ? ', auto' : ''}
+              Last map: {state.last.name} ({state.last.realm})
             </p>
           )}
-        </Card>
-
-        <Card
-          title="Auto mode"
-          help="Lets GKC check the screen by itself at the start of a match, so you do not need to press anything. It is experimental and uses some processor power, so it turns itself off when GKC restarts."
-        >
-          <span className="switch-row">
-            <span>
-              Read the map name at the start of a match
-              <Help text="Turns the automatic checking on or off." />
-            </span>
-            <button
-              className={'sw' + (state.config.autoEnabled ? ' on' : '')}
-              role="switch"
-              aria-checked={state.config.autoEnabled}
-              aria-label="Auto mode"
-              onClick={() => set({ autoEnabled: !state.config.autoEnabled })}
-            />
-          </span>
-          <p className="timer-hint">
-            Experimental. It checks the screen about every 1.5 seconds while on, which uses some
-            processor time. Auto mode turns itself off when GKC restarts. The first start downloads
-            the English text data once, so it needs internet.
-          </p>
         </Card>
 
         <Card

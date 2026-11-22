@@ -50,7 +50,7 @@ const SAME_MAP_QUIET = 120000
 
 let config: MapDetectConfig = { ...defaults }
 let last: MapDetectResult | null = null
-let message = 'Ready. Press the detect hotkey in the in-game menu, or turn on auto mode.'
+let message = 'Ready. Press the detect hotkey in the in-game menu, or use the button.'
 let error = false
 let busy = false
 let worker: Worker | null = null
