@@ -4,7 +4,7 @@
 
 A free toolkit for Dead by Daylight players on Windows: a map overlay with call-out layouts, ReShade presets that switch per map, a 1v1 timer, and a few more small tools in one app.
 
-GKC is an independent fan project. It is not affiliated with, endorsed by or sponsored by Behaviour Interactive. GKC is free and non-commercial, with no payments or donations, and Dead by Daylight artwork belongs to Behaviour Interactive.
+GKC is an independent fan project. It is not affiliated with, endorsed by or sponsored by Behaviour Interactive. GKC is currently free and non-commercial, and Dead by Daylight artwork belongs to Behaviour Interactive.
 
 ## Download
 
@@ -44,7 +44,7 @@ Windows 10 or 11 (64-bit) only.
 - It does not read the game's memory, inject code, press keys or move your mouse. The map is read from a screenshot of your main screen, and hotkeys use the normal Windows shortcut system.
 - Your settings are small files on your own PC (`%APPDATA%\gkc`). GKC keeps backups of them and a log file, both reachable from **Settings, Backup**.
 - GKC only connects to the internet to look for updates on GitHub, to download the map text data once, and when you choose to send an idea or question (that opens a form in your browser).
-- No ads, no accounts, no payments.
+- No ads and no accounts.
 
 ## Questions people ask
 
@@ -61,7 +61,7 @@ Set Dead by Daylight to **borderless windowed** mode. A fullscreen game hides mo
 No. The map overlay and all other tools work without it. The ReShade tool only switches between preset files you already have.
 
 **Does it cost anything?**
-No, and it never will. GKC is free, with no ads, no accounts and no donations.
+No. GKC is currently free, with no ads and no accounts.
 
 ## Ideas and questions
 

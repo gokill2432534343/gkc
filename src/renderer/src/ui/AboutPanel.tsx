@@ -100,10 +100,9 @@ function AboutPanel({ version }: AboutPanelProps): React.JSX.Element {
         <p className="about-text">
           GKC is an independent fan project. It is not affiliated with, endorsed by or sponsored by
           Behaviour Interactive. Dead by Daylight and all related names belong to Behaviour
-          Interactive Inc. GKC is free and non-commercial: it has no payments, donations or paid
-          versions. Game artwork shown in GKC belongs to Behaviour Interactive. ReShade and OBS are
-          third-party software, so check their rules and the game&apos;s current rules before you
-          use them together.
+          Interactive Inc. GKC is currently free and non-commercial. Game artwork shown in GKC
+          belongs to Behaviour Interactive. ReShade and OBS are third-party software, so check their
+          rules and the game&apos;s current rules before you use them together.
         </p>
       </Card>
     </div>
