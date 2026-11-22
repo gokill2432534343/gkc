@@ -81,5 +81,3 @@ Copyright (c) 2026 gokill. GKC is licensed under the [PolyForm Noncommercial Lic
 The license covers GKC's own code only. It does not cover the map layout images (by Lethia), Dead by Daylight names, or any Behaviour Interactive artwork, which belong to their owners.
 
 Third-party libraries and their licenses are listed in `THIRD-PARTY-LICENSES.md`.
-
-Developers: see [DEVELOPING.md](DEVELOPING.md).
