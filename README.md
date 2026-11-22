@@ -46,6 +46,23 @@ Windows 10 or 11 (64-bit) only.
 - GKC only connects to the internet to look for updates on GitHub, to download the map text data once, and when you choose to send an idea or question (that opens a form in your browser).
 - No ads, no accounts, no payments.
 
+## Questions people ask
+
+**Is it safe? Can I get banned?**
+GKC does not touch the game: it does not read its memory, inject code, press keys or move your mouse. The map is read from a screenshot of your screen. Still, GKC is not approved by Behaviour Interactive, and nobody can promise how their anti-cheat treats any overlay or ReShade. Use it at your own risk and check Behaviour's current rules yourself.
+
+**Why does Windows warn me about the installer?**
+The app is not code-signed yet, because a signing certificate costs money. Click **More info**, then **Run anyway**. The full source code is in this repository.
+
+**The overlay does not show over my game.**
+Set Dead by Daylight to **borderless windowed** mode. A fullscreen game hides most overlays.
+
+**Do I need ReShade?**
+No. The map overlay and all other tools work without it. The ReShade tool only switches between preset files you already have.
+
+**Does it cost anything?**
+No, and it never will. GKC is free, with no ads, no accounts and no donations.
+
 ## Ideas and questions
 
 Missing something, or something unclear? Open **Settings, Ideas and questions** in GKC and write it down. Questions about how a function works are welcome too.
