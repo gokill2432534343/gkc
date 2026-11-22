@@ -19,11 +19,11 @@ const steps = [
   },
   {
     title: 'Hotkeys',
-    text: 'Most things work with hotkeys while you play, for example showing the map, starting the timer or switching crosshairs. You can see and change all of them in Settings, Hotkeys.'
+    text: 'Most things work with hotkeys while you play, for example showing the map, starting the timer or switching crosshairs. GKC starts without hotkeys: set the ones you want in Settings, Hotkeys.'
   },
   {
     title: 'Tools for you',
-    text: 'Playing killer? Try the Crosshair (profiles per killer) and the 1v1 timer. Playing survivor? Try Map detection and the Build creator. Streaming or want more? Switch to Advanced mode in Settings, General for stream overlays, ReShade and more. Press Ctrl+K any time to search for a tool.'
+    text: 'Playing killer? Try the Crosshair (profiles per killer) and the 1v1 timer. Playing survivor? Try Map detection and the Build creator. Streaming? Try the stream overlays. ReShade presets are under Maps and visuals. Press Ctrl+K any time to search for a tool.'
   },
   {
     title: 'Good to know',

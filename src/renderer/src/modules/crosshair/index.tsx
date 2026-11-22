@@ -173,8 +173,9 @@ function Crosshair(): React.JSX.Element {
         >
           <p className="settings-intro">
             Set up the crosshair you like, choose a killer, then save it for that killer. Picking
-            the killer later loads their crosshair. In the game, Ctrl+Alt+Page Down and Page Up
-            switch between the killers that have a saved profile.
+            the killer later loads their crosshair. In the game, the next and previous killer
+            hotkeys (set them in Settings, Hotkeys) switch between the killers that have a saved
+            profile.
           </p>
           <input
             className="map-filter"
@@ -213,7 +214,7 @@ function Crosshair(): React.JSX.Element {
           The crosshair is drawn in the middle of your main screen and never blocks clicks. Show or
           hide it in the game with the crosshair hotkey (Settings, Hotkeys). Fullscreen games
           usually need borderless windowed mode. To calibrate a killer: start a custom game, show
-          the crosshair, and nudge it with the move hotkeys (Ctrl+Alt+Numpad 8/2/4/6) until it
+          the crosshair, and nudge it with the move hotkeys (set them in Settings, Hotkeys) until it
           matches where that killer&apos;s power or attack lands. Then save it as that killer&apos;s
           profile. Offsets are in pixels, so redo them if you change your screen resolution.
         </p>

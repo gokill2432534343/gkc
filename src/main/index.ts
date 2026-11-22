@@ -1,8 +1,8 @@
 // Copyright (c) 2026 gokill. PolyForm Noncommercial License 1.0.0, see LICENSE.
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, Menu } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
-import { registerOverlayIpc } from './overlay'
+import { registerOverlayIpc, saveOverlayLook } from './overlay'
 import { registerCrosshairIpc } from './crosshair'
 import { registerUpdaterIpc } from './updater'
 import { registerObsIpc, stopObsServer } from './obs'
@@ -49,6 +49,9 @@ function createWindow(): void {
 
   attachUiScale(mainWindow)
 
+  // closing the main window quits GKC, which also closes the overlay and crosshair windows
+  mainWindow.on('closed', () => app.quit())
+
   mainWindow.on('ready-to-show', () => {
     closeSplash(() => mainWindow.show())
   })
@@ -74,6 +77,9 @@ function createWindow(): void {
 app.whenReady().then(() => {
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.gkc.app')
+
+  // no default menu: its shortcuts (reload, zoom) would catch keys before the hotkey fields
+  Menu.setApplicationMenu(null)
 
   // Default open or close DevTools by F12 in development
   // and ignore CommandOrControl + R in production.
@@ -124,6 +130,7 @@ app.whenReady().then(() => {
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on('will-quit', () => {
+  saveOverlayLook()
   unregisterHotkeys()
   stopObsServer()
   stopMapDetect()

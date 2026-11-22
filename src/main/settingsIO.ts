@@ -41,7 +41,7 @@ const GROUPS: Group[] = [
     id: 'overlayProfiles',
     label: 'Overlay profiles',
     hint: 'Your saved overlay setups',
-    files: ['overlay-profiles.json'],
+    files: ['overlay-profiles.json', 'overlay-look.json'],
     local: []
   },
   {

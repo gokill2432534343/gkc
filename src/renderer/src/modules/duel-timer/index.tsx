@@ -96,10 +96,9 @@ function DuelTimer(): React.JSX.Element {
         </Card>
 
         <p className="timer-hint">
-          Hotkeys (change them in Settings, Hotkeys): Ctrl+Shift+1 start or pause, Ctrl+Shift+2
-          switch side, Ctrl+Shift+3 end round. Switching while the clock runs keeps it running on
-          the other side. Ending a round resets both times and, if auto-score is on, gives the point
-          to the winner.
+          Hotkeys (set them in Settings, Hotkeys): start or pause, switch side and end round.
+          Switching while the clock runs keeps it running on the other side. Ending a round resets
+          both times and, if auto-score is on, gives the point to the winner.
         </p>
       </div>
 

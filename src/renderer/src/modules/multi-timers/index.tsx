@@ -124,10 +124,10 @@ function MultiTimers(): React.JSX.Element {
         </Card>
 
         <p className="timer-hint">
-          Timers run independently, so you can track several things at once. The first four have
-          hotkeys (Ctrl+Alt+1 to 4, change them in Settings). Lengths are in seconds and are up to
-          you; check the numbers for the perks or events you track against the game, because they
-          can change with patches. Up to {MAX_TIMERS} timers.
+          Timers run independently, so you can track several things at once. The first four can have
+          hotkeys (set them in Settings, Hotkeys). Lengths are in seconds and are up to you; check
+          the numbers for the perks or events you track against the game, because they can change
+          with patches. Up to {MAX_TIMERS} timers.
         </p>
       </div>
 

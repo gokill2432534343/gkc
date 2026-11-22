@@ -47,11 +47,6 @@ function App(): React.JSX.Element {
   const [view, setView] = useState<View>({ page: 'home' })
   const [searchOpen, setSearchOpen] = useState(false)
   const [welcomed, setWelcomed] = usePersistentState<boolean>('gkc.welcomed', false)
-  // people who already used GKC keep everything, new people start with the essentials
-  const [mode, setMode] = usePersistentState<'basic' | 'advanced'>(
-    'gkc.mode',
-    welcomed ? 'advanced' : 'basic'
-  )
   const [guideOpen, setGuideOpen] = useState(!welcomed)
   const [favouriteIds, setFavouriteIds] = usePersistentState<string[]>('gkc.favourites', [])
   const [recentIds, setRecentIds] = usePersistentState<string[]>('gkc.recent', [])
@@ -78,9 +73,7 @@ function App(): React.JSX.Element {
     return rank(a.id) - rank(b.id)
   })
 
-  const enabledModules = orderedModules.filter(
-    (item) => !disabledIds.includes(item.id) && (mode === 'advanced' || !item.advanced)
-  )
+  const enabledModules = orderedModules.filter((item) => !disabledIds.includes(item.id))
 
   const visibleCategories = categories.filter((category) =>
     enabledModules.some((item) => item.category === category.id)
@@ -90,9 +83,7 @@ function App(): React.JSX.Element {
     view.page === 'module' ? enabledModules.find((item) => item.id === view.id) : undefined
 
   function enabledByIds(ids: string[]): typeof modules {
-    return getModulesByIds(ids).filter(
-      (item) => !disabledIds.includes(item.id) && (mode === 'advanced' || !item.advanced)
-    )
+    return getModulesByIds(ids).filter((item) => !disabledIds.includes(item.id))
   }
 
   const activeKey =
@@ -203,8 +194,6 @@ function App(): React.JSX.Element {
           onClearRecent={() => setRecentIds([])}
           onResetAll={resetAll}
           onShowGuide={() => setGuideOpen(true)}
-          mode={mode}
-          onChangeMode={setMode}
         />
       )
     }

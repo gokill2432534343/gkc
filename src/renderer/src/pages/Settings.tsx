@@ -27,8 +27,6 @@ type SettingsProps = {
   onClearRecent: () => void
   onResetAll: () => void
   onShowGuide: () => void
-  mode: 'basic' | 'advanced'
-  onChangeMode: (mode: 'basic' | 'advanced') => void
 }
 
 const sections: { id: Section; label: string }[] = [
@@ -105,9 +103,7 @@ function Settings({
   onToggleModule,
   onClearRecent,
   onResetAll,
-  onShowGuide,
-  mode,
-  onChangeMode
+  onShowGuide
 }: SettingsProps): React.JSX.Element {
   const [section, setSection] = useState<Section>(
     sections.some((item) => item.id === initialSection) ? (initialSection as Section) : 'general'
@@ -183,27 +179,6 @@ function Settings({
         <div>
           {section === 'general' && (
             <Card>
-              <div className="setting-row">
-                <div className="setting-text">
-                  Mode
-                  <Help text="Basic shows the essential tools so GKC stays simple. Advanced shows everything, like stream overlays, ReShade, ladder and match results. You can switch any time and nothing is lost." />
-                  <small>
-                    Basic shows the essential tools. Advanced shows everything, including stream
-                    overlays, ReShade, ladder, match results and more.
-                  </small>
-                </div>
-                <div className="timer-presets">
-                  {(['basic', 'advanced'] as const).map((option) => (
-                    <button
-                      key={option}
-                      className={'chip-btn' + (mode === option ? ' active' : '')}
-                      onClick={() => onChangeMode(option)}
-                    >
-                      {option === 'basic' ? 'Basic' : 'Advanced'}
-                    </button>
-                  ))}
-                </div>
-              </div>
               <div className="setting-row">
                 <div className="setting-text">
                   Style
@@ -393,12 +368,12 @@ function Settings({
                 {hotkeyError !== '' && <div className="hotkey-error">{hotkeyError}</div>}
                 <div className="setting-row">
                   <div className="setting-text">
-                    Defaults
-                    <Help text="Sets all hotkeys back to the ones GKC came with." />
-                    <small>Restore the original shortcuts.</small>
+                    Clear all
+                    <Help text="Removes every hotkey, so you can start again. GKC comes without hotkeys, you set the ones you want above." />
+                    <small>Remove all shortcuts.</small>
                   </div>
                   <button className="btn setting-btn" onClick={resetHotkeys}>
-                    Reset
+                    Clear
                   </button>
                 </div>
               </Card>

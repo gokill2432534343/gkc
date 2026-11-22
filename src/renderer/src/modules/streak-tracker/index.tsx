@@ -298,8 +298,8 @@ function StreakTracker(): React.JSX.Element {
 
         <p className="timer-hint">
           You decide what counts as a win (for example a certain number of kills as killer, or an
-          escape as survivor). Hotkeys in Settings: Ctrl+Alt+W win, Ctrl+Alt+L loss, Ctrl+Alt+Z
-          undo, Ctrl+Alt+R switch role. Everything is saved between sessions.
+          escape as survivor). Hotkeys for win, loss, undo and switching role can be set in
+          Settings, Hotkeys. Everything is saved between sessions.
         </p>
       </div>
 

@@ -1,5 +1,5 @@
 // Copyright (c) 2026 gokill. PolyForm Noncommercial License 1.0.0, see LICENSE.
-import { IconClock, IconSearch, IconStar } from '@tabler/icons-react'
+import { IconClock, IconPictureInPicture, IconSearch, IconStar } from '@tabler/icons-react'
 import Card from '../ui/Card'
 import GettingStarted from '../ui/GettingStarted'
 import { categories } from '../core/categories'
@@ -21,7 +21,7 @@ type HomeProps = {
   onSearch: () => void
 }
 
-// What people usually want to do, in plain words. Tools that are hidden (Basic mode) are skipped.
+// What people usually want to do, in plain words. Tools that are switched off in Settings are skipped.
 const goals = [
   {
     tool: 'crosshair',
@@ -37,12 +37,11 @@ const goals = [
   },
   { tool: 'streak-tracker', icon: 'trophy', label: 'Track my wins', hint: 'Streaks and stats' },
   {
-    tool: 'build-creator',
+    tool: 'builds',
     icon: 'adjustments',
-    label: 'Build a perk loadout',
-    hint: 'Pick and save perks'
+    label: 'Builds and random rolls',
+    hint: 'Save perks, roll perks or a killer'
   },
-  { tool: 'perk-randomizer', icon: 'dice', label: 'Roll random perks', hint: 'For a challenge' },
   { tool: 'map-detection', icon: 'map', label: 'Show my map', hint: 'Detect it or pick it' },
   {
     tool: 'stream-overlays',
@@ -118,6 +117,13 @@ function Home({
 
       <h2 className="home-heading">What do you want to do?</h2>
       <div className="grid-4">
+        <button className="tile" onClick={onOpenOverlay}>
+          <IconPictureInPicture size={20} stroke={1.5} />
+          <span className="tile-text">
+            Show the overlay
+            <small>Map, timers and more over the game</small>
+          </span>
+        </button>
         {goals
           .filter((goal) => availableIds.includes(goal.tool))
           .map((goal) => {

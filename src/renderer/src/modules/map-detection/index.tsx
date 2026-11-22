@@ -59,8 +59,8 @@ function MapDetection(): React.JSX.Element {
           help="GKC can read the map name from your screen and then show that map's layout and switch your ReShade preset. Open the in-game menu where the map name is visible, then press the detect hotkey or the button."
         >
           <p className="timer-hint">
-            Open the in-game menu (the map line is shown at the bottom) and press the detect hotkey,
-            Control+Shift+D by default. GKC takes a screenshot of your primary monitor, reads the
+            Open the in-game menu (the map line is shown at the bottom) and press the detect hotkey
+            (set it in Settings, Hotkeys). GKC takes a screenshot of your primary monitor, reads the
             map name and switches the map layout and prepares the ReShade preset (then you press
             your ReShade reload key). Run the game in windowed or borderless mode. English game
             language only for now.

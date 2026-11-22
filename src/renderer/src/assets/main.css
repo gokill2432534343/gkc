@@ -863,13 +863,13 @@ body:has(.overlay-root) {
 }
 .overlay-root {
   height: 100vh;
-  padding: 6px;
+  padding: 3px;
   /* --ov-bg is the Panel background slider; the lighter the panels, the stronger the text shadow */
   text-shadow: 0 1px 4px rgba(0, 0, 0, calc((1 - var(--ov-bg, 1)) * 0.95));
 }
 .overlay-panel {
   height: 100%;
-  padding: 12px 14px;
+  padding: 6px 8px;
   background: rgba(20, 20, 22, calc(0.88 * var(--ov-bg, 1)));
   border: 1px solid rgba(42, 42, 46, var(--ov-bg, 1));
   border-radius: 10px;

@@ -56,7 +56,7 @@ function clean(value: unknown): OverlayProfile | null {
     showBasicTimer: item.showBasicTimer === true,
     scale: typeof item.scale === 'number' ? Math.min(Math.max(item.scale, 0.6), 2) : 1,
     opacity: typeof item.opacity === 'number' ? Math.min(Math.max(item.opacity, 0.2), 1) : 0.9,
-    size: typeof item.size === 'number' ? Math.min(Math.max(Math.round(item.size), 300), 900) : 480,
+    size: typeof item.size === 'number' ? Math.min(Math.max(Math.round(item.size), 150), 900) : 480,
     background: typeof item.background === 'number' ? Math.min(Math.max(item.background, 0), 1) : 1,
     crosshair: item.crosshair === true,
     reshade: item.reshade === true,

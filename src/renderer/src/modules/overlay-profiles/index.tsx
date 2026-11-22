@@ -44,8 +44,8 @@ function OverlayProfiles(): React.JSX.Element {
           A profile remembers which overlay panels are shown (map, 1v1, streak, timers), the map
           opacity and size, whether the crosshair is on, whether ReShade switches presets by map,
           and whether the streak tracker is on killer or survivor. Applying one sets all of that at
-          once. In the game, Ctrl+Alt+P and Ctrl+Alt+O switch to the next and previous profile
-          (change them in Settings, Hotkeys).
+          once. In the game, the next and previous profile hotkeys switch between profiles (set them
+          in Settings, Hotkeys).
         </p>
         {profiles.length === 0 && <div className="empty-note">No profiles yet.</div>}
         {profiles.map((profile) => (

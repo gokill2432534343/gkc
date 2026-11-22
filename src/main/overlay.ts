@@ -5,6 +5,7 @@ import { readFileSync, rmSync, writeFileSync } from 'fs'
 import { is } from '@electron-toolkit/utils'
 import { timerCount } from './customTimers'
 import { notifyChange } from './bus'
+import { readJson, writeJson } from './store'
 
 export type OverlayState = {
   open: boolean
@@ -58,12 +59,15 @@ function windowSize(): { width: number; height: number } {
   if (content.showTimers) panels += 26 * Math.max(timerCount(), 1) + 8
 
   // The picture is drawn size pixels wide and 1.1 times as high (the layout images are 2000 x 2200).
-  // 68 and 62 are the window frame, the sideways GKC mark and the map name line around it.
-  if (mapShown)
+  // 50 and 44 are the window frame, the sideways GKC mark and the map name line around it.
+  // With only the map on screen the window is exactly as wide as the map, so no space is wasted.
+  if (mapShown) {
+    const mapOnly = !anyPanel && !content.hint
     return {
-      width: Math.max(content.size + 68, width),
-      height: Math.round(content.size * 1.1) + 62 + panels
+      width: mapOnly ? content.size + 50 : Math.max(content.size + 50, width),
+      height: Math.round(content.size * 1.1) + 44 + panels
     }
+  }
   return { width, height: 64 + panels + 26 }
 }
 
@@ -82,6 +86,37 @@ function broadcastContent(): void {
   notifyChange()
 }
 
+const MIN_MAP_SIZE = 150
+const LOOK_FILE = 'overlay-look.json'
+const LOOK_KEYS = ['scale', 'opacity', 'background', 'size'] as const
+let lookTimer: ReturnType<typeof setTimeout> | null = null
+
+// The look (size, scale, opacity, panel background) is kept between starts. Only these four
+// values are saved, never the map or the panels that are switched on.
+export function saveOverlayLook(): void {
+  if (lookTimer) clearTimeout(lookTimer)
+  lookTimer = null
+  const look: Record<string, number> = {}
+  for (const key of LOOK_KEYS) look[key] = content[key]
+  writeJson(LOOK_FILE, look, false)
+}
+
+function scheduleSaveLook(): void {
+  if (lookTimer) clearTimeout(lookTimer)
+  lookTimer = setTimeout(saveOverlayLook, 400)
+}
+
+function loadOverlayLook(): void {
+  const saved = readJson<Partial<Record<(typeof LOOK_KEYS)[number], unknown>>>(LOOK_FILE)
+  if (!saved) return
+  const patch: Partial<OverlayContent> = {}
+  for (const key of LOOK_KEYS) {
+    const value = saved[key]
+    if (typeof value === 'number' && Number.isFinite(value)) patch[key] = value
+  }
+  setOverlayContent(patch)
+}
+
 export function getOverlayContent(): OverlayContent {
   return content
 }
@@ -90,12 +125,13 @@ export function setOverlayContent(patch: Partial<OverlayContent>): void {
   const next = { ...content, ...patch }
   next.opacity = Math.min(Math.max(next.opacity, 0.2), 1)
   next.background = Math.min(Math.max(Number(next.background) || 0, 0), 1)
-  next.size = Math.min(Math.max(Math.round(next.size), 300), 900)
+  next.size = Math.min(Math.max(Math.round(next.size), MIN_MAP_SIZE), 900)
   next.hint = String(next.hint ?? '').slice(0, 80)
   next.scale = Math.min(Math.max(next.scale, 0.6), 2)
   content = next
   applySize()
   broadcastContent()
+  scheduleSaveLook()
 }
 
 export function refreshOverlaySize(): void {
@@ -312,6 +348,7 @@ export function toggleClickThrough(): void {
 }
 
 export function registerOverlayIpc(): void {
+  loadOverlayLook()
   ipcMain.handle('overlay:get-state', () => getState())
   ipcMain.handle('overlay:get-content', () => content)
   ipcMain.on('overlay:set-content', (_event, patch: Partial<OverlayContent>) => {

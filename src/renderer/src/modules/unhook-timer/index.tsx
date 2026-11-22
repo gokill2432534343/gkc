@@ -169,9 +169,9 @@ function UnhookTimer(): React.JSX.Element {
           </button>
         </div>
         <p className="timer-hint">
-          In the game, press the unhook timer hotkey (Ctrl+Alt+U by default, see Settings, Hotkeys)
-          when you see an unhook. Every press restarts the one Unhook countdown, no matter who it
-          was. It shows on the overlay in the timer list (the overlay turns on by itself).
+          In the game, press the unhook timer hotkey (set it in Settings, Hotkeys) when you see an
+          unhook. Every press restarts the one Unhook countdown, no matter who it was. It shows on
+          the overlay in the timer list (the overlay turns on by itself).
         </p>
         {state.lastUnhook && (
           <p className="timer-hint">

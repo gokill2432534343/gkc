@@ -41,34 +41,36 @@ export type HotkeyAction =
   | 'nudgeRight'
 export type HotkeyMap = Record<HotkeyAction, string>
 
+// New installs start without hotkeys, so nothing clashes with other programs. Every hotkey is
+// set by the player in Settings, Hotkeys. Hotkeys saved by earlier versions are kept.
 const defaults: HotkeyMap = {
-  toggleOverlay: 'Control+Shift+O',
-  toggleClickThrough: 'Control+Shift+C',
-  toggleTimer: 'Control+Shift+T',
-  resetTimer: 'Control+Shift+R',
-  toggleMap: 'Control+Shift+M',
-  toggleCrosshair: 'Control+Shift+X',
-  detectMap: 'Control+Shift+D',
-  unhookTimer: 'Control+Alt+U',
-  profileNext: 'Control+Alt+P',
-  profilePrev: 'Control+Alt+O',
-  duelToggle: 'Control+Shift+1',
-  duelSwitch: 'Control+Shift+2',
-  duelEndRound: 'Control+Shift+3',
-  crosshairNextKiller: 'Control+Alt+PageDown',
-  crosshairPrevKiller: 'Control+Alt+PageUp',
-  streakWin: 'Control+Alt+W',
-  streakLoss: 'Control+Alt+L',
-  streakUndo: 'Control+Alt+Z',
-  streakRole: 'Control+Alt+R',
-  customTimer1: 'Control+Alt+1',
-  customTimer2: 'Control+Alt+2',
-  customTimer3: 'Control+Alt+3',
-  customTimer4: 'Control+Alt+4',
-  nudgeUp: 'Control+Alt+num8',
-  nudgeDown: 'Control+Alt+num2',
-  nudgeLeft: 'Control+Alt+num4',
-  nudgeRight: 'Control+Alt+num6'
+  toggleOverlay: '',
+  toggleClickThrough: '',
+  toggleTimer: '',
+  resetTimer: '',
+  toggleMap: '',
+  toggleCrosshair: '',
+  detectMap: '',
+  unhookTimer: '',
+  profileNext: '',
+  profilePrev: '',
+  duelToggle: '',
+  duelSwitch: '',
+  duelEndRound: '',
+  crosshairNextKiller: '',
+  crosshairPrevKiller: '',
+  streakWin: '',
+  streakLoss: '',
+  streakUndo: '',
+  streakRole: '',
+  customTimer1: '',
+  customTimer2: '',
+  customTimer3: '',
+  customTimer4: '',
+  nudgeUp: '',
+  nudgeDown: '',
+  nudgeLeft: '',
+  nudgeRight: ''
 }
 
 const handlers: Record<HotkeyAction, () => void> = {

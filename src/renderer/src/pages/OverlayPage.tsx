@@ -234,7 +234,7 @@ function OverlayPage({
             label="Map size"
             help="How large the map picture is. Only changes the map, not the other panels."
             value={content.size}
-            min={300}
+            min={150}
             max={900}
             step={20}
             onChange={(size) => set({ size })}

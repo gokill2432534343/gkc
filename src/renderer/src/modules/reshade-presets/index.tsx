@@ -43,6 +43,7 @@ function ReshadePresets(): React.JSX.Element {
   const [testMap, setTestMap] = useState('')
   const [allMaps, setAllMaps] = useState<{ realm: string; name: string }[]>([])
   const [query, setQuery] = useState('')
+  const [mapsOpen, setMapsOpen] = useState(false)
 
   useEffect(() => {
     void api.realms().then(setRealms)
@@ -173,44 +174,52 @@ function ReshadePresets(): React.JSX.Element {
           onPick={() => api.pick('default')}
           onClear={() => api.clear('default')}
         />
-        <input
-          className="map-filter"
-          placeholder="Search a map or realm"
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-        />
-        {realmGroups.length === 0 && <div className="empty-note">No map found.</div>}
-        {realmGroups.map((group) => {
-          const done = group.maps.filter((name) => config.mapPresets[name]).length
-          return (
-            <details key={group.realm} className="realm-group" open={search !== ''}>
-              <summary>
-                {group.realm}
-                <small>
-                  {done} of {group.maps.length} set
-                </small>
-              </summary>
-              <div className="timer-actions">
-                <button className="btn" onClick={() => void api.pick('allmaps:' + group.realm)}>
-                  Set all maps of this realm
-                </button>
-                <button className="btn" onClick={() => api.clear('allmaps:' + group.realm)}>
-                  Clear all
-                </button>
-              </div>
-              {group.maps.map((name) => (
-                <PickerRow
-                  key={name}
-                  label={name}
-                  hint="Uses the default"
-                  path={config.mapPresets[name] ?? ''}
-                  onPick={() => void api.pick('map:' + name)}
-                  onClear={() => api.clear('map:' + name)}
-                />
-              ))}
-            </details>
-          )
-        })}
+        <div className="timer-actions">
+          <button className="btn" aria-expanded={mapsOpen} onClick={() => setMapsOpen(!mapsOpen)}>
+            {mapsOpen ? 'Hide the maps' : 'Choose a preset for each map'}
+          </button>
+        </div>
+        {mapsOpen && (
+          <input
+            className="map-filter"
+            placeholder="Search a map or realm"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+          />
+        )}
+        {mapsOpen && realmGroups.length === 0 && <div className="empty-note">No map found.</div>}
+        {mapsOpen &&
+          realmGroups.map((group) => {
+            const done = group.maps.filter((name) => config.mapPresets[name]).length
+            return (
+              <details key={group.realm} className="realm-group" open={search !== ''}>
+                <summary>
+                  {group.realm}
+                  <small>
+                    {done} of {group.maps.length} set
+                  </small>
+                </summary>
+                <div className="timer-actions">
+                  <button className="btn" onClick={() => void api.pick('allmaps:' + group.realm)}>
+                    Set all maps of this realm
+                  </button>
+                  <button className="btn" onClick={() => api.clear('allmaps:' + group.realm)}>
+                    Clear all
+                  </button>
+                </div>
+                {group.maps.map((name) => (
+                  <PickerRow
+                    key={name}
+                    label={name}
+                    hint="Uses the default"
+                    path={config.mapPresets[name] ?? ''}
+                    onPick={() => void api.pick('map:' + name)}
+                    onClear={() => api.clear('map:' + name)}
+                  />
+                ))}
+              </details>
+            )
+          })}
       </Card>
 
       {oldRealmKeys.length > 0 && (

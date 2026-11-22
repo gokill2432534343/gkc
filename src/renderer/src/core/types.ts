@@ -10,7 +10,7 @@ export type ModuleManifest = {
   icon: string
   version: string
   updated?: string
-  // only shown in Advanced mode
+  // not used any more: every tool is shown (the Basic mode was removed)
   advanced?: boolean
 }
 

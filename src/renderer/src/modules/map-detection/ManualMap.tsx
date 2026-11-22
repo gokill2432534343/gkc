@@ -152,7 +152,7 @@ function ManualMap(): React.JSX.Element {
                 Size
                 <input
                   type="range"
-                  min={300}
+                  min={150}
                   max={900}
                   step={20}
                   value={content.size}

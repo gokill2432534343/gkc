@@ -34,9 +34,9 @@ Windows 10 or 11 (64-bit) only.
 
 ## First steps
 
-- Open **Settings, Overlay** (or press the hotkey) to show the overlay. Fullscreen games usually need **borderless windowed** mode for any overlay to be visible.
-- Hotkeys can be changed in **Settings, Hotkeys**. They work while the game is in focus.
-- **Map detection:** press the detect hotkey (Ctrl+Shift+D by default) while the in-game menu shows the map name, or turn on auto mode. GKC reads the name from a screenshot of your main screen. The first start downloads English text data once.
+- Open **Settings, Overlay** (or set a hotkey for it) to show the overlay. Fullscreen games usually need **borderless windowed** mode for any overlay to be visible.
+- GKC starts without hotkeys. Set the ones you want in **Settings, Hotkeys**. They work while the game is in focus.
+- **Map detection:** press your detect hotkey (set it in **Settings, Hotkeys**) while the in-game menu shows the map name, or turn on auto mode. GKC reads the name from a screenshot of your main screen. The first start downloads English text data once.
 - **ReShade:** open the **ReShade presets** tab and follow the setup steps there.
 
 ## What GKC does and does not do
