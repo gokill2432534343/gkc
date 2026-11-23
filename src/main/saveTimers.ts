@@ -32,7 +32,7 @@ type SaveCommand =
   | { type: 'remove'; id: string }
   | { type: 'update'; id: string; patch: Partial<Omit<SaveTimer, 'id'>> }
 
-export const MAX_SAVE_TIMERS = 4
+export const MAX_SAVE_TIMERS = 10
 // seconds the finished timer stays on the overlay after green ended
 const SHOW_AFTER = 1.5
 
@@ -44,7 +44,7 @@ function num(value: unknown, min: number, max: number, fallback: number): number
 function clean(item: Partial<SaveTimer>, id: string): SaveTimer {
   return {
     id,
-    name: String(item.name ?? 'Save').slice(0, 24),
+    name: String(item.name ?? 'Save').slice(0, 40),
     target: num(item.target, 0.5, 30, 3),
     lead: num(item.lead, 0, 1, 0.2),
     ready: num(item.ready, 0.2, 5, 1),
@@ -52,25 +52,56 @@ function clean(item: Partial<SaveTimer>, id: string): SaveTimer {
   }
 }
 
-// The target times are the ones measured by the player: about 3 s for a flashbang save from a
-// locker, about 2.9 s for a pallet save. The lead (0.2 s) is a typical reaction time and can be
-// changed on the Save timers page.
-let presets: SaveTimer[] = [
-  clean({ name: 'Flashbang locker save', target: 3 }, 'flashbang-locker'),
-  clean({ name: 'Pallet save', target: 2.9 }, 'pallet')
+// Target times are measured by the player (about, in seconds). The lead (0.2 s) is a typical
+// reaction time and can be changed on the Save timers page. Where the player measured a range
+// (flashlight grab 1.0 to 1.1 s, Jason 1.0 to 1.15 s), the target is its start and "green lasts"
+// is its width. "since" is the seed version that added the preset, so an update can add new
+// presets to a saved list without bringing back ones the player removed.
+const SEED_VERSION = 2
+const seeds: (Partial<SaveTimer> & { id: string; since: number })[] = [
+  { id: 'flashbang-locker', since: 1, name: 'Flashbang locker save', target: 3 },
+  { id: 'pallet', since: 1, name: 'Pallet save', target: 2.9 },
+  { id: 'flashlight-grab', since: 2, name: 'Flashlight save (grab)', target: 1, ready: 0.5, hold: 0.1 },
+  { id: 'flashbang-grab', since: 2, name: 'Flashbang save (grab)', target: 0.8, ready: 0.4 },
+  { id: 'springtrap-axe', since: 2, name: 'Springtrap: flashbang (axe pickup)', target: 2.2 },
+  { id: 'wesker-slam', since: 2, name: 'Wesker: flashbang (wall slam)', target: 1, ready: 0.5 },
+  { id: 'jason-impaled', since: 2, name: 'Jason: flashbang (impaled pickup)', target: 1, ready: 0.5, hold: 0.15 }
 ]
+let presets: SaveTimer[] = seeds.map((seed) => clean(seed, seed.id))
 let runningId: string | null = null
 let startedAt: number | null = null
 let endTimer: ReturnType<typeof setTimeout> | null = null
+let onChange: () => void = () => undefined
+
+// Lets the overlay change its window size when a save timer starts or ends
+export function setSaveTimerChangeHandler(handler: () => void): void {
+  onChange = handler
+}
+
+export function saveTimerActive(): boolean {
+  return runningId !== null
+}
 
 function load(): void {
   const saved = readJson<Partial<SaveTimer>[]>('save-timers.json')
-  if (!Array.isArray(saved)) return
-  const loaded = saved
-    .filter((item) => typeof item?.id === 'string')
-    .slice(0, MAX_SAVE_TIMERS)
-    .map((item) => clean(item, item.id as string))
-  if (loaded.length > 0) presets = loaded
+  // a list saved before the seed file existed is version 1
+  const seen = readJson<{ version: number }>('save-timers-seed.json')?.version ?? 1
+  if (Array.isArray(saved)) {
+    presets = saved
+      .filter((item) => typeof item?.id === 'string')
+      .slice(0, MAX_SAVE_TIMERS)
+      .map((item) => clean(item, item.id as string))
+    if (seen < SEED_VERSION) {
+      for (const seed of seeds) {
+        const missing = !presets.some((item) => item.id === seed.id)
+        if (seed.since > seen && missing && presets.length < MAX_SAVE_TIMERS) {
+          presets.push(clean(seed, seed.id))
+        }
+      }
+      writeJson('save-timers.json', presets)
+    }
+  }
+  writeJson('save-timers-seed.json', { version: SEED_VERSION })
 }
 
 function publish(persist: boolean): void {
@@ -79,6 +110,7 @@ function publish(persist: boolean): void {
   for (const window of BrowserWindow.getAllWindows()) {
     window.webContents.send('savetimers:state', state)
   }
+  onChange()
 }
 
 export function stopSaveTimer(): void {

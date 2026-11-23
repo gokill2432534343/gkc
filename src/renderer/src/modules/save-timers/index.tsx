@@ -13,7 +13,7 @@ import {
   type SaveTimer
 } from '../../core/useSaveTimers'
 
-const MAX_SAVE_TIMERS = 4
+const MAX_SAVE_TIMERS = 10
 
 // A field that is saved when you leave it or press Enter. The text is kept while you type, so
 // decimals like 2.9 (or 2,9) can be typed without the value jumping around.
@@ -53,7 +53,7 @@ function Field(props: {
         type="text"
         inputMode={props.numeric ? 'decimal' : 'text'}
         value={text}
-        maxLength={props.numeric ? 6 : 24}
+        maxLength={props.numeric ? 6 : 40}
         onChange={(event) => setText(event.target.value)}
         onBlur={commit}
         onKeyDown={(event) => {
@@ -83,7 +83,7 @@ function SaveTimers(): React.JSX.Element {
       <div className="module-stack">
         <Card
           title="Overlay"
-          help="Shows the save timer bar on the in-game overlay. It is grey and says Ready until you start a timer, then it turns red, yellow and green."
+          help="Shows the save timer bar on the in-game overlay. Choose whether it is always there (grey and Ready until a timer starts) or only appears when you press a save timer hotkey."
         >
           <div className="switch-row">
             <span>
@@ -96,6 +96,19 @@ function SaveTimers(): React.JSX.Element {
               aria-checked={content.showSaveTimers}
               aria-label="Show on overlay"
               onClick={() => window.api.overlay.setContent({ showSaveTimers: !content.showSaveTimers })}
+            />
+          </div>
+          <div className="switch-row">
+            <span>
+              Always show the bar
+              <Help text="On: the bar stays on the overlay, grey until a timer starts. Off: the bar only appears when you press the hotkey of a save timer, and goes away after it finishes." />
+            </span>
+            <button
+              className={'sw' + (content.saveTimersAlways ? ' on' : '')}
+              role="switch"
+              aria-checked={content.saveTimersAlways}
+              aria-label="Always show the bar"
+              onClick={() => window.api.overlay.setContent({ saveTimersAlways: !content.saveTimersAlways })}
             />
           </div>
         </Card>

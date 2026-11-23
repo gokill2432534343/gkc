@@ -10,6 +10,7 @@ export type OverlayContent = {
   showTimers: boolean
   showBasicTimer: boolean
   showSaveTimers: boolean
+  saveTimersAlways: boolean
   scale: number
   opacity: number
   background: number
@@ -27,6 +28,7 @@ export function useOverlayContent(): OverlayContent {
     showTimers: false,
     showBasicTimer: false,
     showSaveTimers: false,
+    saveTimersAlways: true,
     scale: 1,
     opacity: 0.9,
     background: 1,

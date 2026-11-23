@@ -58,10 +58,11 @@ const hotkeyActions = [
   { action: 'customTimer2', label: 'Multi timer 2: start or pause', hint: 'The second timer in Multi timers.' },
   { action: 'customTimer3', label: 'Multi timer 3: start or pause', hint: 'The third timer in Multi timers.' },
   { action: 'customTimer4', label: 'Multi timer 4: start or pause', hint: 'The fourth timer in Multi timers.' },
-  { action: 'saveTimer1', label: 'Save timer 1: start', hint: 'Starts the first save timer (by default the flashbang locker save). Press again to start over.' },
-  { action: 'saveTimer2', label: 'Save timer 2: start', hint: 'Starts the second save timer (by default the pallet save).' },
-  { action: 'saveTimer3', label: 'Save timer 3: start', hint: 'Starts the third save timer, if you added one.' },
-  { action: 'saveTimer4', label: 'Save timer 4: start', hint: 'Starts the fourth save timer, if you added one.' },
+  ...Array.from({ length: 10 }, (_, index) => ({
+    action: 'saveTimer' + (index + 1),
+    label: 'Save timer ' + (index + 1) + ': start',
+    hint: 'Starts save timer ' + (index + 1) + ' from the Save timers tool. Press again to start over.'
+  })),
   { action: 'streakWin', label: 'Streak: record a win', hint: 'Adds a win to the streak tracker.' },
   { action: 'streakLoss', label: 'Streak: record a loss', hint: 'Adds a loss to the streak tracker.' },
   { action: 'streakUndo', label: 'Streak: undo last result', hint: 'Removes the last recorded result.' },

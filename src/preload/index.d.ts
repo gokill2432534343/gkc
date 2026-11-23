@@ -208,6 +208,7 @@ type OverlayContent = {
   showTimers: boolean
   showBasicTimer: boolean
   showSaveTimers: boolean
+  saveTimersAlways: boolean
   scale: number
   opacity: number
   background: number

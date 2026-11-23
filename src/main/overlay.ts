@@ -4,6 +4,7 @@ import { join } from 'path'
 import { readFileSync, rmSync, writeFileSync } from 'fs'
 import { is } from '@electron-toolkit/utils'
 import { timerCount } from './customTimers'
+import { saveTimerActive } from './saveTimers'
 import { notifyChange } from './bus'
 import { readJson, writeJson } from './store'
 
@@ -21,6 +22,7 @@ export type OverlayContent = {
   showTimers: boolean
   showBasicTimer: boolean
   showSaveTimers: boolean
+  saveTimersAlways: boolean
   scale: number
   opacity: number
   // how solid the panels behind the text are (0 = text only, 1 = the normal look)
@@ -41,6 +43,7 @@ let content: OverlayContent = {
   showTimers: false,
   showBasicTimer: false,
   showSaveTimers: false,
+  saveTimersAlways: true,
   scale: 1,
   opacity: 0.9,
   background: 1,
@@ -50,19 +53,21 @@ let content: OverlayContent = {
 
 function windowSize(): { width: number; height: number } {
   const mapShown = content.mapUrl !== null && content.mapVisible
+  // the save timer bar is either always there or only while a save timer runs
+  const saveBar = content.showSaveTimers && (content.saveTimersAlways || saveTimerActive())
   const anyPanel =
     content.showDuel ||
     content.showStreak ||
     content.showTimers ||
     content.showBasicTimer ||
-    content.showSaveTimers
+    saveBar
   // 26 extra pixels hold the sideways GKC mark on the left
   const width = (content.showDuel ? 560 : anyPanel ? 400 : 320) + 26
 
   let panels = content.hint ? 40 : 0
   panels += content.showDuel ? 56 : content.showBasicTimer ? 70 : 0
   if (content.showStreak) panels += 56
-  if (content.showSaveTimers) panels += 56
+  if (saveBar) panels += 56
   if (content.showTimers) panels += 26 * Math.max(timerCount(), 1) + 8
 
   // The picture is drawn size pixels wide and 1.1 times as high (the layout images are 2000 x 2200).
@@ -368,6 +373,7 @@ export function registerOverlayIpc(): void {
     if (typeof patch.showTimers === 'boolean') safe.showTimers = patch.showTimers
     if (typeof patch.showBasicTimer === 'boolean') safe.showBasicTimer = patch.showBasicTimer
     if (typeof patch.showSaveTimers === 'boolean') safe.showSaveTimers = patch.showSaveTimers
+    if (typeof patch.saveTimersAlways === 'boolean') safe.saveTimersAlways = patch.saveTimersAlways
     if (typeof patch.scale === 'number') safe.scale = patch.scale
     if (typeof patch.opacity === 'number') safe.opacity = patch.opacity
     if (typeof patch.background === 'number') safe.background = patch.background

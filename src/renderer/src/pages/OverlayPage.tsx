@@ -200,6 +200,12 @@ function OverlayPage({
             onChange={() => set({ showSaveTimers: !content.showSaveTimers })}
           />
           <SwitchRow
+            label="Save timers: always visible"
+            help="On: the save timer bar stays on the overlay and is grey until a timer starts. Off: it only appears when you press the hotkey of a save timer."
+            on={content.saveTimersAlways}
+            onChange={() => set({ saveTimersAlways: !content.saveTimersAlways })}
+          />
+          <SwitchRow
             label="Multi timers"
             help="Shows your own named timers (for example for cooldowns). Create them in the Multi timers tool."
             on={content.showTimers}

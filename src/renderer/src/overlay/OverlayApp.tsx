@@ -136,11 +136,13 @@ function OverlayApp(): React.JSX.Element {
                 <span className="overlay-save-label">{phaseLabel[savePhaseNow]}</span>
               </div>
             ) : (
-              <div className="overlay-save phase-idle">
-                <span className="overlay-save-name">Save timers</span>
-                <span className="overlay-save-time">0.00</span>
-                <span className="overlay-save-label">Ready</span>
-              </div>
+              content.saveTimersAlways && (
+                <div className="overlay-save phase-idle">
+                  <span className="overlay-save-name">Save timers</span>
+                  <span className="overlay-save-time">0.00</span>
+                  <span className="overlay-save-label">Ready</span>
+                </div>
+              )
             ))}
 
           {content.showStreak && (

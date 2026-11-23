@@ -40,6 +40,12 @@ export type HotkeyAction =
   | 'saveTimer2'
   | 'saveTimer3'
   | 'saveTimer4'
+  | 'saveTimer5'
+  | 'saveTimer6'
+  | 'saveTimer7'
+  | 'saveTimer8'
+  | 'saveTimer9'
+  | 'saveTimer10'
   | 'nudgeUp'
   | 'nudgeDown'
   | 'nudgeLeft'
@@ -76,6 +82,12 @@ const defaults: HotkeyMap = {
   saveTimer2: '',
   saveTimer3: '',
   saveTimer4: '',
+  saveTimer5: '',
+  saveTimer6: '',
+  saveTimer7: '',
+  saveTimer8: '',
+  saveTimer9: '',
+  saveTimer10: '',
   nudgeUp: '',
   nudgeDown: '',
   nudgeLeft: '',
@@ -110,6 +122,12 @@ const handlers: Record<HotkeyAction, () => void> = {
   saveTimer2: () => startSaveTimerAt(1),
   saveTimer3: () => startSaveTimerAt(2),
   saveTimer4: () => startSaveTimerAt(3),
+  saveTimer5: () => startSaveTimerAt(4),
+  saveTimer6: () => startSaveTimerAt(5),
+  saveTimer7: () => startSaveTimerAt(6),
+  saveTimer8: () => startSaveTimerAt(7),
+  saveTimer9: () => startSaveTimerAt(8),
+  saveTimer10: () => startSaveTimerAt(9),
   nudgeUp: () => nudgeCrosshair(0, -1),
   nudgeDown: () => nudgeCrosshair(0, 1),
   nudgeLeft: () => nudgeCrosshair(-1, 0),
