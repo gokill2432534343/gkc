@@ -49,7 +49,21 @@ const hotkeyActions = [
     label: 'Toggle click-through',
     hint: 'Switches the overlay between clickable and click-through.'
   },
-  { action: 'toggleTimer', label: 'Start or pause timer', hint: 'Controls the timer.' },
+  { action: 'toggleTimer', label: 'Basic timer: start or pause', hint: 'Controls the basic timer.' },
+  { action: 'resetTimer', label: 'Basic timer: reset', hint: 'Sets the basic timer back to its start time.' },
+  { action: 'duelToggle', label: '1v1 timer: start or pause', hint: 'Starts or pauses the clock of the active player.' },
+  { action: 'duelSwitch', label: '1v1 timer: switch side', hint: 'Switches to the other player. A running clock keeps running.' },
+  { action: 'duelEndRound', label: '1v1 timer: end round', hint: 'Ends the round and resets both times. Gives the point if auto-score is on.' },
+  { action: 'customTimer1', label: 'Multi timer 1: start or pause', hint: 'The first timer in Multi timers.' },
+  { action: 'customTimer2', label: 'Multi timer 2: start or pause', hint: 'The second timer in Multi timers.' },
+  { action: 'customTimer3', label: 'Multi timer 3: start or pause', hint: 'The third timer in Multi timers.' },
+  { action: 'customTimer4', label: 'Multi timer 4: start or pause', hint: 'The fourth timer in Multi timers.' },
+  { action: 'streakWin', label: 'Streak: record a win', hint: 'Adds a win to the streak tracker.' },
+  { action: 'streakLoss', label: 'Streak: record a loss', hint: 'Adds a loss to the streak tracker.' },
+  { action: 'streakUndo', label: 'Streak: undo last result', hint: 'Removes the last recorded result.' },
+  { action: 'streakRole', label: 'Streak: switch role', hint: 'Switches between survivor and killer.' },
+  { action: 'crosshairNextKiller', label: 'Crosshair: next killer', hint: 'Switches to the next killer crosshair profile.' },
+  { action: 'crosshairPrevKiller', label: 'Crosshair: previous killer', hint: 'Switches to the previous killer crosshair profile.' },
   {
     action: 'profileNext',
     label: 'Next overlay profile',
@@ -87,8 +101,7 @@ const hotkeyActions = [
   },
   { action: 'nudgeDown', label: 'Crosshair: move down', hint: 'Moves the crosshair 1 pixel.' },
   { action: 'nudgeLeft', label: 'Crosshair: move left', hint: 'Moves the crosshair 1 pixel.' },
-  { action: 'nudgeRight', label: 'Crosshair: move right', hint: 'Moves the crosshair 1 pixel.' },
-  { action: 'resetTimer', label: 'Reset timer', hint: 'Sets the timer back to its start time.' }
+  { action: 'nudgeRight', label: 'Crosshair: move right', hint: 'Moves the crosshair 1 pixel.' }
 ]
 
 function categoryLabel(id: string): string {

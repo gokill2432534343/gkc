@@ -1,9 +1,0 @@
-{
-  "id": "perk-randomizer",
-  "name": "Perk randomizer",
-  "description": "Roll a random set of four perks for survivors or killers.",
-  "category": "build-tools",
-  "icon": "arrows-shuffle",
-  "version": "1.0.0",
-  "updated": "2026-11-07"
-}
