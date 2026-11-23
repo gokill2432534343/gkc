@@ -2676,3 +2676,34 @@ input:focus-visible,
 .overlay-save.phase-idle .overlay-save-name {
   color: #9a9aa0;
 }
+
+/* Build creator: item or killer and add-on pickers */
+.build-gear {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0;
+}
+.build-gear .layout-field {
+  flex: 1 1 180px;
+}
+
+/* Roulette result lines */
+.roulette-result {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 14px 0;
+}
+.roulette-line {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.roulette-line small {
+  min-width: 70px;
+  color: var(--text-2);
+}
+.roulette-line strong {
+  font-weight: 600;
+}

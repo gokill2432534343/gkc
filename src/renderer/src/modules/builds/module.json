@@ -1,9 +1,9 @@
 {
   "id": "builds",
   "name": "Builds",
-  "description": "Make and save perk builds, or roll random perks and killers.",
+  "description": "Make and save builds with perks, items and add-ons, or use the roulette to roll a random survivor or killer setup.",
   "category": "build-tools",
   "icon": "adjustments",
-  "version": "1.1.0",
-  "updated": "2026-11-22"
+  "version": "1.2.0",
+  "updated": "2026-11-23"
 }

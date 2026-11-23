@@ -1,6 +1,8 @@
 // Copyright (c) 2026 gokill. PolyForm Noncommercial License 1.0.0, see LICENSE.
 import perksData from './perks.json'
 import killersData from './killers.json'
+import addonsData from './addons.json'
+import survivorsData from './survivors.json'
 import type { Perk, Killer, Role } from './types'
 import { perkCategory } from './perkCategories'
 
@@ -38,3 +40,9 @@ export const perks: Perk[] = [
 ]
 
 export const killers: Killer[] = killersData.map((name) => ({ id: slugify(name), name }))
+
+export const survivors: string[] = survivorsData
+
+// Names only (from the DBD wiki). Survivor items by type, killer add-ons by killer name.
+export const itemAddons: Record<string, string[]> = addonsData.items
+export const killerAddons: Record<string, string[]> = addonsData.killers

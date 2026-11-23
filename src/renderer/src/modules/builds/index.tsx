@@ -1,17 +1,16 @@
 // Copyright (c) 2026 gokill. PolyForm Noncommercial License 1.0.0, see LICENSE.
-// One module for everything about builds. The three tools keep their own folders and are shown
-// here as tabs (their module.json files are gone, so they are no longer listed on their own).
+// One module for everything about builds: the build creator and one roulette that rolls
+// survivors, killers, items, add-ons and perks. The old tools keep their own folders (the
+// roulette reuses the perk logic) but are no longer listed on their own.
 import BuildCreator from '../build-creator'
-import PerkRandomizer from '../perk-randomizer'
-import KillerRandomizer from '../killer-randomizer'
+import Roulette from './Roulette'
 import { usePersistentState } from '../../core/usePersistentState'
 
-type Tab = 'build' | 'perks' | 'killers'
+type Tab = 'build' | 'roulette'
 
 const tabs: { id: Tab; label: string }[] = [
   { id: 'build', label: 'Build creator' },
-  { id: 'perks', label: 'Random perks' },
-  { id: 'killers', label: 'Random killer' }
+  { id: 'roulette', label: 'Roulette' }
 ]
 
 function Builds(): React.JSX.Element {
@@ -32,8 +31,7 @@ function Builds(): React.JSX.Element {
         ))}
       </div>
       {current === 'build' && <BuildCreator />}
-      {current === 'perks' && <PerkRandomizer />}
-      {current === 'killers' && <KillerRandomizer />}
+      {current === 'roulette' && <Roulette />}
     </div>
   )
 }

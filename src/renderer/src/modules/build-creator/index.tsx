@@ -1,7 +1,7 @@
 // Copyright (c) 2026 gokill. PolyForm Noncommercial License 1.0.0, see LICENSE.
 import { useState } from 'react'
 import { IconCopy, IconTrash } from '@tabler/icons-react'
-import { perks } from '../../content'
+import { itemAddons, killerAddons, killers, perks } from '../../content'
 import type { Role } from '../../content/types'
 import Card from '../../ui/Card'
 import { killerCategories, survivorCategories } from '../../content/perkCategories'
@@ -15,7 +15,12 @@ type SavedBuild = {
   name: string
   role: Role
   perkIds: string[]
+  // survivor item type or killer name, and up to two add-ons (builds saved before have none)
+  gear?: string
+  addons?: string[]
 }
+
+const ADDON_COUNT = 2
 
 function BuildCreator(): React.JSX.Element {
   const [role, setRole] = useState<Role>('survivor')
@@ -25,6 +30,8 @@ function BuildCreator(): React.JSX.Element {
   // 'all', a category id, or 'exhaustion'
   const [group, setGroup] = useState('all')
   const [name, setName] = useState('')
+  const [gear, setGear] = useState('')
+  const [addons, setAddons] = useState<string[]>(Array(ADDON_COUNT).fill(''))
   const [saved, setSaved] = usePersistentState<SavedBuild[]>('gkc.builds', [])
 
   const slotPerks = slotIds.map((id) => perks.find((perk) => perk.id === id) ?? null)
@@ -42,7 +49,21 @@ function BuildCreator(): React.JSX.Element {
     .filter((perk) => perk.name.toLowerCase().includes(search.trim().toLowerCase()))
     .sort((a, b) => a.name.localeCompare(b.name))
 
+  const gearOptions = role === 'survivor' ? Object.keys(itemAddons) : killers.map((k) => k.name)
+  const addonOptions = (role === 'survivor' ? itemAddons[gear] : killerAddons[gear]) ?? []
+
+  function changeGear(next: string): void {
+    setGear(next)
+    setAddons(Array(ADDON_COUNT).fill(''))
+  }
+
+  function changeAddon(index: number, value: string): void {
+    setAddons(addons.map((item, i) => (i === index ? value : item)))
+  }
+
   function changeRole(next: Role): void {
+    setGear('')
+    setAddons(Array(ADDON_COUNT).fill(''))
     setRole(next)
     setSlotIds(Array(SLOT_COUNT).fill(null))
     setActiveSlot(0)
@@ -64,12 +85,14 @@ function BuildCreator(): React.JSX.Element {
   }
 
   function save(): void {
-    if (chosenIds.length === 0) return
+    if (chosenIds.length === 0 && !gear) return
     const build: SavedBuild = {
       id: crypto.randomUUID(),
       name: name.trim() || 'Build ' + (saved.length + 1),
       role,
-      perkIds: chosenIds
+      perkIds: chosenIds,
+      gear,
+      addons: addons.filter(Boolean)
     }
     setSaved([build, ...saved])
     setName('')
@@ -79,10 +102,20 @@ function BuildCreator(): React.JSX.Element {
     setRole(build.role)
     setSlotIds(Array.from({ length: SLOT_COUNT }, (_, i) => build.perkIds[i] ?? null))
     setActiveSlot(0)
+    setGear(build.gear ?? '')
+    setAddons(Array.from({ length: ADDON_COUNT }, (_, i) => build.addons?.[i] ?? ''))
   }
 
   function perkNames(ids: string[]): string[] {
     return ids.flatMap((id) => perks.find((perk) => perk.id === id)?.name ?? [])
+  }
+
+  function buildNames(build: SavedBuild): string[] {
+    return [
+      ...perkNames(build.perkIds),
+      ...(build.gear ? [build.gear] : []),
+      ...(build.addons ?? [])
+    ]
   }
 
   function copy(names: string[]): void {
@@ -131,6 +164,44 @@ function BuildCreator(): React.JSX.Element {
             ))}
           </div>
 
+          <div className="build-gear">
+            <label className="layout-field">
+              {role === 'survivor' ? 'Item' : 'Killer'}
+              <select
+                className="map-filter"
+                value={gear}
+                onChange={(event) => changeGear(event.target.value)}
+              >
+                <option value="">None</option>
+                {gearOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </label>
+            {addons.map((addon, index) => (
+              <label key={index} className="layout-field">
+                {'Add-on ' + (index + 1)}
+                <select
+                  className="map-filter"
+                  value={addon}
+                  disabled={addonOptions.length === 0}
+                  onChange={(event) => changeAddon(index, event.target.value)}
+                >
+                  <option value="">None</option>
+                  {addonOptions
+                    .filter((option) => option === addon || !addons.includes(option))
+                    .map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                </select>
+              </label>
+            ))}
+          </div>
+
           <div className="build-save">
             <input
               className="map-filter"
@@ -138,7 +209,11 @@ function BuildCreator(): React.JSX.Element {
               value={name}
               onChange={(event) => setName(event.target.value)}
             />
-            <button className="btn primary" onClick={save} disabled={chosenIds.length === 0}>
+            <button
+              className="btn primary"
+              onClick={save}
+              disabled={chosenIds.length === 0 && !gear}
+            >
               Save build
             </button>
           </div>
@@ -146,7 +221,7 @@ function BuildCreator(): React.JSX.Element {
 
         <Card
           title="Saved builds"
-          help="Your saved builds. Click one to load it, copy it as text or delete it."
+          help="Your saved builds with their perks, item or killer, and add-ons. Click one to load it, copy it as text or delete it."
         >
           {saved.length === 0 ? (
             <div className="empty-note">Saved builds show up here.</div>
@@ -157,13 +232,13 @@ function BuildCreator(): React.JSX.Element {
                   <span>{build.name}</span>
                   <small>
                     {build.role === 'survivor' ? 'Survivor' : 'Killer'} ·{' '}
-                    {perkNames(build.perkIds).join(', ')}
+                    {buildNames(build).join(', ')}
                   </small>
                 </button>
                 <button
                   className="icon-btn"
                   aria-label="Copy build"
-                  onClick={() => copy(perkNames(build.perkIds))}
+                  onClick={() => copy(buildNames(build))}
                 >
                   <IconCopy size={16} stroke={1.5} />
                 </button>
