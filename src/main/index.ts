@@ -81,12 +81,13 @@ app.whenReady().then(() => {
   // no default menu: its shortcuts (reload, zoom) would catch keys before the hotkey fields
   Menu.setApplicationMenu(null)
 
-  // Default open or close DevTools by F12 in development
-  // and ignore CommandOrControl + R in production.
-  // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils
-  app.on('browser-window-created', (_, window) => {
-    optimizer.watchWindowShortcuts(window)
-  })
+  // F12 opens DevTools in development only. In production this helper also swallowed Ctrl+R
+  // and Ctrl+Shift+R, so those keys never reached the hotkey fields.
+  if (is.dev) {
+    app.on('browser-window-created', (_, window) => {
+      optimizer.watchWindowShortcuts(window)
+    })
+  }
 
   // IPC test
   ipcMain.on('ping', () => console.log('pong'))

@@ -42,7 +42,7 @@ export type HotkeyAction =
 export type HotkeyMap = Record<HotkeyAction, string>
 
 // New installs start without hotkeys, so nothing clashes with other programs. Every hotkey is
-// set by the player in Settings, Hotkeys. Hotkeys saved by earlier versions are kept.
+// set by the player in Settings, Hotkeys. Keys the player sets are kept between starts.
 const defaults: HotkeyMap = {
   toggleOverlay: '',
   toggleClickThrough: '',
@@ -107,6 +107,12 @@ let current: HotkeyMap = { ...defaults }
 
 function load(): HotkeyMap {
   try {
+    // one time only: earlier versions saved their old default keys, so everything starts unset
+    if (!readJson('hotkeys-cleared.json')) {
+      writeJson('hotkeys-cleared.json', { done: true })
+      writeJson('hotkeys.json', defaults)
+      return { ...defaults }
+    }
     const saved = readJson('hotkeys.json') as Partial<HotkeyMap>
     // mouse button hotkeys from older versions are gone, those actions go back to their default
     for (const key of Object.keys(saved) as HotkeyAction[]) {
