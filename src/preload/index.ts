@@ -80,6 +80,8 @@ type OverlayProfile = {
   showStreak: boolean
   showTimers: boolean
   showBasicTimer: boolean
+  showSaveTimers: boolean
+  saveTimersAlways: boolean
   scale: number
   opacity: number
   size: number

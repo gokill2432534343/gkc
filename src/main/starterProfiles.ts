@@ -11,6 +11,8 @@ export type StarterProfile = {
   showStreak: boolean
   showTimers: boolean
   showBasicTimer: boolean
+  showSaveTimers: boolean
+  saveTimersAlways: boolean
   scale: number
   opacity: number
   size: number
@@ -27,6 +29,8 @@ const base = {
   showStreak: false,
   showTimers: false,
   showBasicTimer: false,
+  showSaveTimers: false,
+  saveTimersAlways: true,
   scale: 1,
   opacity: 0.9,
   size: 480,

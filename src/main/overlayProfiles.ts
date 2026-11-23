@@ -20,6 +20,8 @@ export type OverlayProfile = {
   showStreak: boolean
   showTimers: boolean
   showBasicTimer: boolean
+  showSaveTimers: boolean
+  saveTimersAlways: boolean
   scale: number
   opacity: number
   size: number
@@ -54,6 +56,8 @@ function clean(value: unknown): OverlayProfile | null {
     showStreak: item.showStreak === true,
     showTimers: item.showTimers === true,
     showBasicTimer: item.showBasicTimer === true,
+    showSaveTimers: item.showSaveTimers === true,
+    saveTimersAlways: item.saveTimersAlways !== false,
     scale: typeof item.scale === 'number' ? Math.min(Math.max(item.scale, 0.6), 2) : 1,
     opacity: typeof item.opacity === 'number' ? Math.min(Math.max(item.opacity, 0.2), 1) : 0.9,
     size: typeof item.size === 'number' ? Math.min(Math.max(Math.round(item.size), 150), 900) : 480,
@@ -99,6 +103,8 @@ function snapshot(id: string, name: string, crosshair: boolean): OverlayProfile 
     showStreak: content.showStreak,
     showTimers: content.showTimers,
     showBasicTimer: content.showBasicTimer,
+    showSaveTimers: content.showSaveTimers,
+    saveTimersAlways: content.saveTimersAlways,
     scale: content.scale,
     opacity: content.opacity,
     size: content.size,
@@ -119,6 +125,8 @@ export function applyOverlayProfile(id: string): void {
     showStreak: profile.showStreak,
     showTimers: profile.showTimers,
     showBasicTimer: profile.showBasicTimer,
+    showSaveTimers: profile.showSaveTimers,
+    saveTimersAlways: profile.saveTimersAlways,
     scale: profile.scale,
     opacity: profile.opacity,
     size: profile.size,
@@ -132,6 +140,7 @@ export function applyOverlayProfile(id: string): void {
     profile.showStreak ||
     profile.showTimers ||
     profile.showBasicTimer ||
+    profile.showSaveTimers ||
     (profile.mapVisible && hasMap)
   )
     openOverlay()

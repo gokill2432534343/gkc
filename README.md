@@ -24,11 +24,12 @@ Windows 10 or 11 (64-bit) only.
 
 ## What it does
 
-- **Map overlay:** shows a call-out layout of the current map on top of the game. GKC can detect the map for you or you pick it by hand. Drag the overlay anywhere, change its size and transparency, and turn click-through on so clicks go to the game.
+- **Map overlay:** shows a call-out layout of the current map on top of the game. Press a hotkey to detect the map from a screenshot, or pick it by hand. Drag the overlay anywhere, change its size and transparency, and turn click-through on so clicks go to the game.
 - **ReShade presets per map:** choose a ReShade look for every map, and GKC switches to it when the map changes. You press ReShade's own reload key once afterwards. GKC never presses keys for you.
 - **1v1 timer:** names, score and timers for 1v1 matches, with different looks.
 - **Streak tracker, crosshair, timers, unhook timer:** small tools for streaks and win rates, a custom crosshair, and countdowns on the overlay.
-- **Perk and killer randomizers, build creator:** roll random perks or killers for a challenge, and save perk loadouts.
+- **Save timers:** a red, yellow and green bar on the overlay that counts up from your hotkey press and tells you when to throw the flashbang, use the flashlight or hit the pallet. Comes with presets for common saves (locker, pallet, grabs, some killer-specific pickups) and you can edit the timings yourself. The bar can be always visible or only appear when you start a timer.
+- **Builds:** a build creator for perks, survivor items and add-ons or killer add-ons, and a roulette that rolls a random survivor or killer setup (character, item, add-ons and perks, every part can be switched off).
 - **Stream overlays (OBS):** the overlays as browser sources for your stream. This is off until you turn it on, and it only listens on your own computer.
 - **Backup:** save your whole setup to a file and load it on another PC.
 
@@ -36,7 +37,7 @@ Windows 10 or 11 (64-bit) only.
 
 - Open **Settings, Overlay** (or set a hotkey for it) to show the overlay. Fullscreen games usually need **borderless windowed** mode for any overlay to be visible.
 - GKC starts without hotkeys. Set the ones you want in **Settings, Hotkeys**. They work while the game is in focus.
-- **Map detection:** press your detect hotkey (set it in **Settings, Hotkeys**) while the in-game menu shows the map name, or turn on auto mode. GKC reads the name from a screenshot of your main screen. The first start downloads English text data once.
+- **Map detection:** press your detect hotkey (set it in **Settings, Hotkeys**) while the in-game menu shows the map name. GKC reads the name from a screenshot of your main screen. The first start downloads English text data once.
 - **ReShade:** open the **ReShade presets** tab and follow the setup steps there.
 
 ## What GKC does and does not do
@@ -70,7 +71,7 @@ Missing something, or something unclear? Open **Settings, Ideas and questions** 
 ## Credits
 
 - Map layout images by **Lethia**, shared by **Hens333** and used with his permission.
-- Perk and killer names were compiled using the Dead by Daylight Wiki as a reference (names only).
+- Perk, killer, survivor, item and add-on names were compiled using the Dead by Daylight Wiki as a reference (names only, no artwork).
 - The map overlay idea is inspired by dbd-overlay by H4RDC0RN (Apache-2.0).
 - Dead by Daylight and all related names and images belong to Behaviour Interactive.
 

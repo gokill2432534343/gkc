@@ -13,6 +13,7 @@ function summary(profile: Profile): string {
   if (profile.showStreak) parts.push('Streak')
   if (profile.showTimers) parts.push('Timers')
   if (profile.showBasicTimer) parts.push('Basic timer')
+  if (profile.showSaveTimers) parts.push('Save timers')
   if (profile.crosshair) parts.push('Crosshair')
   if (profile.reshade) parts.push('ReShade')
   parts.push(profile.role === 'killer' ? 'Killer streak' : 'Survivor streak')
@@ -41,7 +42,7 @@ function OverlayProfiles(): React.JSX.Element {
         help="A profile remembers a whole overlay setup: which panels are shown, the look, the crosshair and your streak role. Click a profile to use it."
       >
         <p className="settings-intro">
-          A profile remembers which overlay panels are shown (map, 1v1, streak, timers), the map
+          A profile remembers which overlay panels are shown (map, 1v1, streak, timers, save timers), the map
           opacity and size, whether the crosshair is on, whether ReShade switches presets by map,
           and whether the streak tracker is on killer or survivor. Applying one sets all of that at
           once. In the game, the next and previous profile hotkeys switch between profiles (set them
