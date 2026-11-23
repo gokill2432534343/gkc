@@ -67,6 +67,19 @@ type DuelState = {
   nameBg: 'dark' | 'black' | 'light'
 }
 
+type SaveTimersState = {
+  presets: {
+    id: string
+    name: string
+    target: number
+    lead: number
+    ready: number
+    hold: number
+  }[]
+  runningId: string | null
+  startedAt: number | null
+}
+
 type ProfileState = {
   profiles: Record<string, Omit<CrosshairSettings, 'visible'>>
   activeKiller: string
@@ -194,6 +207,7 @@ type OverlayContent = {
   showStreak: boolean
   showTimers: boolean
   showBasicTimer: boolean
+  showSaveTimers: boolean
   scale: number
   opacity: number
   background: number
@@ -316,6 +330,11 @@ type GkcApi = {
     getState: () => Promise<DuelState>
     command: (command: Record<string, unknown>) => void
     onState: (callback: (state: DuelState) => void) => () => void
+  }
+  saveTimers: {
+    get: () => Promise<SaveTimersState>
+    command: (command: Record<string, unknown>) => void
+    onState: (callback: (state: SaveTimersState) => void) => () => void
   }
   crosshair: {
     getProfiles: () => Promise<ProfileState>

@@ -1,0 +1,9 @@
+{
+  "id": "save-timers",
+  "name": "Save timers",
+  "description": "Pallet and flashbang save timing with a red, yellow and green signal on the overlay.",
+  "category": "competitive",
+  "icon": "stopwatch",
+  "version": "1.0.0",
+  "updated": "2026-11-23"
+}

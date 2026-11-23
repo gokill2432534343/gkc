@@ -194,6 +194,12 @@ function OverlayPage({
             onChange={() => set({ showBasicTimer: !content.showBasicTimer })}
           />
           <SwitchRow
+            label="Save timers"
+            help="Shows the red, yellow and green bar for pallet and flashbang saves. Set it up in the Save timers tool."
+            on={content.showSaveTimers}
+            onChange={() => set({ showSaveTimers: !content.showSaveTimers })}
+          />
+          <SwitchRow
             label="Multi timers"
             help="Shows your own named timers (for example for cooldowns). Create them in the Multi timers tool."
             on={content.showTimers}
@@ -234,7 +240,7 @@ function OverlayPage({
             label="Map size"
             help="How large the map picture is. Only changes the map, not the other panels."
             value={content.size}
-            min={150}
+            min={300}
             max={900}
             step={20}
             onChange={(size) => set({ size })}

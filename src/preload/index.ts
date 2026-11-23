@@ -10,6 +10,7 @@ type OverlayContent = {
   showStreak: boolean
   showTimers: boolean
   showBasicTimer: boolean
+  showSaveTimers: boolean
   scale: number
   opacity: number
   background: number
@@ -50,6 +51,19 @@ type DuelState = {
   bestOf: number
   accent: string
   nameBg: 'dark' | 'black' | 'light'
+}
+
+type SaveTimersState = {
+  presets: {
+    id: string
+    name: string
+    target: number
+    lead: number
+    ready: number
+    hold: number
+  }[]
+  runningId: string | null
+  startedAt: number | null
 }
 
 type ProfileState = {
@@ -387,6 +401,16 @@ const api = {
       const listener = (_event: unknown, state: DuelState): void => callback(state)
       ipcRenderer.on('duel:state', listener)
       return () => ipcRenderer.removeListener('duel:state', listener)
+    }
+  },
+  saveTimers: {
+    get: (): Promise<SaveTimersState> => ipcRenderer.invoke('savetimers:get'),
+    command: (command: Record<string, unknown>): void =>
+      ipcRenderer.send('savetimers:command', command),
+    onState: (callback: (state: SaveTimersState) => void): (() => void) => {
+      const listener = (_event: unknown, state: SaveTimersState): void => callback(state)
+      ipcRenderer.on('savetimers:state', listener)
+      return () => ipcRenderer.removeListener('savetimers:state', listener)
     }
   },
   crosshair: {

@@ -4,6 +4,7 @@ import { readJson, writeJson } from './store'
 import { toggleClickThrough, toggleMapVisible, toggleOverlay } from './overlay'
 import { recordResult, toggleStreakRole, undoResult } from './streak'
 import { toggleTimerAt } from './customTimers'
+import { startSaveTimerAt } from './saveTimers'
 import { startUnhookTimer } from './unhook'
 import { endDuelRound, switchDuel, toggleDuel } from './duel'
 import { cycleCrosshairProfile, nudgeCrosshair, toggleCrosshair } from './crosshair'
@@ -35,6 +36,10 @@ export type HotkeyAction =
   | 'customTimer2'
   | 'customTimer3'
   | 'customTimer4'
+  | 'saveTimer1'
+  | 'saveTimer2'
+  | 'saveTimer3'
+  | 'saveTimer4'
   | 'nudgeUp'
   | 'nudgeDown'
   | 'nudgeLeft'
@@ -67,6 +72,10 @@ const defaults: HotkeyMap = {
   customTimer2: '',
   customTimer3: '',
   customTimer4: '',
+  saveTimer1: '',
+  saveTimer2: '',
+  saveTimer3: '',
+  saveTimer4: '',
   nudgeUp: '',
   nudgeDown: '',
   nudgeLeft: '',
@@ -97,6 +106,10 @@ const handlers: Record<HotkeyAction, () => void> = {
   customTimer2: () => toggleTimerAt(1),
   customTimer3: () => toggleTimerAt(2),
   customTimer4: () => toggleTimerAt(3),
+  saveTimer1: () => startSaveTimerAt(0),
+  saveTimer2: () => startSaveTimerAt(1),
+  saveTimer3: () => startSaveTimerAt(2),
+  saveTimer4: () => startSaveTimerAt(3),
   nudgeUp: () => nudgeCrosshair(0, -1),
   nudgeDown: () => nudgeCrosshair(0, 1),
   nudgeLeft: () => nudgeCrosshair(-1, 0),

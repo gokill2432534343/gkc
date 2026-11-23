@@ -10,6 +10,7 @@ import { registerLadderIpc } from './ladder'
 import { registerStreakIpc } from './streak'
 import { registerCustomTimersIpc, setCountChangeHandler } from './customTimers'
 import { refreshOverlaySize } from './overlay'
+import { registerSaveTimersIpc } from './saveTimers'
 import { registerReshadeIpc } from './reshade'
 import { registerOverlayProfilesIpc } from './overlayProfiles'
 import { registerMapDetectIpc, stopMapDetect } from './mapDetect'
@@ -103,6 +104,7 @@ app.whenReady().then(() => {
   registerStreakIpc()
   registerLadderIpc()
   registerCustomTimersIpc()
+  registerSaveTimersIpc()
   registerReshadeIpc()
   registerMapDetectIpc()
   registerAutoResultIpc()

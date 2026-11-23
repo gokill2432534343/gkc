@@ -7,6 +7,7 @@ import { useStreak, winRate } from '../core/useStreak'
 import { formatRemaining, remainingMs, useCustomTimers } from '../core/useCustomTimers'
 import { duelRowStyle } from '../core/duelLook'
 import { formatGap, formatMs, proximity, sideTime, useDuel, useNow } from '../core/useDuel'
+import { elapsedMs, phaseLabel, savePhase, useSaveTimers } from '../core/useSaveTimers'
 
 const sides = [0, 1] as const
 
@@ -19,7 +20,14 @@ function OverlayApp(): React.JSX.Element {
   const streak = useStreak()
   const customTimers = useCustomTimers()
   const timersRunning = customTimers.some((timer) => timer.runningSince !== null)
-  const now = useNow((content.showDuel && duelRunning) || (content.showTimers && timersRunning))
+  const saves = useSaveTimers()
+  const saveTimer = saves.presets.find((item) => item.id === saves.runningId)
+  const now = useNow(
+    (content.showDuel && duelRunning) ||
+      (content.showTimers && timersRunning) ||
+      (content.showSaveTimers && !!saveTimer)
+  )
+  const savePhaseNow = saveTimer ? savePhase(saveTimer, elapsedMs(saves.startedAt, now)) : null
   const near = duelRunning ? proximity(duel, now) : null
   const showMap = content.mapUrl !== null && content.mapVisible
 
@@ -117,6 +125,23 @@ function OverlayApp(): React.JSX.Element {
               </div>
             )
           )}
+
+          {content.showSaveTimers &&
+            (saveTimer && savePhaseNow ? (
+              <div className={'overlay-save phase-' + savePhaseNow}>
+                <span className="overlay-save-name">{saveTimer.name}</span>
+                <span className="overlay-save-time">
+                  {(elapsedMs(saves.startedAt, now) / 1000).toFixed(2)}
+                </span>
+                <span className="overlay-save-label">{phaseLabel[savePhaseNow]}</span>
+              </div>
+            ) : (
+              <div className="overlay-save phase-idle">
+                <span className="overlay-save-name">Save timers</span>
+                <span className="overlay-save-time">0.00</span>
+                <span className="overlay-save-label">Ready</span>
+              </div>
+            ))}
 
           {content.showStreak && (
             <div className="overlay-streak">

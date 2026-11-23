@@ -61,8 +61,8 @@ const GROUPS: Group[] = [
   {
     id: 'timers',
     label: 'Custom timers',
-    hint: 'Your own timers',
-    files: ['custom-timers.json'],
+    hint: 'Your own timers and save timers',
+    files: ['custom-timers.json', 'save-timers.json'],
     local: []
   },
   {

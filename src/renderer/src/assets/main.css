@@ -2581,3 +2581,98 @@ input:focus-visible,
     transition: none !important;
   }
 }
+
+/* Save timers: red = wait or too late, yellow = get ready, green = act now */
+.save-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.save-live {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 14px 16px;
+  border-radius: var(--radius-m);
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+.save-live-name {
+  flex: 1;
+  color: var(--text-2);
+}
+.save-live-time {
+  font-family: 'Cascadia Mono', Consolas, monospace;
+  font-size: 40px;
+  font-variant-numeric: tabular-nums;
+}
+.save-live-label {
+  min-width: 90px;
+  text-align: right;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.save-live.phase-wait,
+.save-live.phase-late {
+  background: #4a1b1b;
+  border-color: #c0392b;
+}
+.save-live.phase-ready {
+  background: #4a3b0d;
+  border-color: #d9a21b;
+}
+.save-live.phase-now {
+  background: #14452a;
+  border-color: #2fbf6b;
+}
+.overlay-save {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-top: 8px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: #fff;
+}
+.overlay-save-name {
+  flex: 1;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+.overlay-save-time {
+  font-family: 'Cascadia Mono', Consolas, monospace;
+  font-size: 26px;
+  font-variant-numeric: tabular-nums;
+}
+.overlay-save-label {
+  min-width: 78px;
+  text-align: right;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.overlay-save.phase-wait,
+.overlay-save.phase-late {
+  background: #b3281b;
+}
+.overlay-save.phase-ready {
+  background: #c99512;
+  color: #1a1400;
+}
+.overlay-save.phase-ready .overlay-save-name {
+  color: rgba(26, 20, 0, 0.75);
+}
+.overlay-save.phase-now {
+  background: #1f9d55;
+}
+
+.overlay-save.phase-idle {
+  background: rgba(255, 255, 255, 0.08);
+  color: #9a9aa0;
+}
+.overlay-save.phase-idle .overlay-save-name {
+  color: #9a9aa0;
+}
