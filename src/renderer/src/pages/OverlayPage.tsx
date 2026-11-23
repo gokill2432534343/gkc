@@ -213,7 +213,7 @@ function OverlayPage({
           />
         </Card>
 
-        <Card title="Look">
+        <Card title="Look" collapsible>
           <SliderRow
             label="Map opacity"
             help="How see-through the map picture is. A lower number lets you see more of the game behind it. The text panels are changed with Panel background."
@@ -273,7 +273,7 @@ function OverlayPage({
           </Card>
         )}
 
-        <Card title="Advanced settings">
+        <Card title="Advanced settings" collapsible>
           <p className="timer-hint">Open a tool for its detailed settings.</p>
           <div className="advanced-grid">
             {advanced

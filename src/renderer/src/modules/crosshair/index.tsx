@@ -168,7 +168,7 @@ function Crosshair(): React.JSX.Element {
           </div>
         </Card>
         <Card
-          title="Killer profiles"
+          title="Killer profiles" collapsible
           help="A profile remembers your crosshair settings for one killer, because every killer aims a little differently. Pick a killer, set up the crosshair, then press Save. Next time you pick that killer the crosshair loads by itself."
         >
           <p className="settings-intro">

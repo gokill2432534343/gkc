@@ -179,7 +179,7 @@ function Match(): React.JSX.Element {
       </Card>
 
       <Card
-        title="Scoring reference"
+        title="Scoring reference" collapsible
         help="Only a reminder of one common league scoring system. GKC does not calculate anything for you, you choose the winner yourself."
       >
         <p className="timer-hint">

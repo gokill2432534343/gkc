@@ -181,7 +181,7 @@ function UnhookTimer(): React.JSX.Element {
       </Card>
 
       <Card
-        title="Watch the screen (experimental)"
+        title="Watch the screen (experimental)" collapsible
         help="GKC can start the timer by itself. You show it where the survivor icons are and what the hook icon looks like. When an icon stops showing the hook, the timer starts. It only looks at a screenshot and never touches the game. It can miss or misfire, so treat it as a helper."
       >
         <div className="switch-row">

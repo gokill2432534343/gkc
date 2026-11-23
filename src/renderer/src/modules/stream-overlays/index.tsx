@@ -127,7 +127,7 @@ function StreamOverlays(): React.JSX.Element {
       </Card>
 
       <Card
-        title="How to use in OBS"
+        title="How to use in OBS" collapsible
         help="Step by step: turn on the server, add a Browser source in OBS, paste an address, set the size."
       >
         <ol className="obs-steps">

@@ -31,6 +31,8 @@ type Result = {
 
 const emptySlots = (): (Perk | null)[] => Array(SLOT_COUNT).fill(null)
 const noLocks = (): boolean[] => Array(SLOT_COUNT).fill(false)
+type PartLocks = { who: boolean; item: boolean; addons: boolean }
+const noPartLocks = (): PartLocks => ({ who: false, item: false, addons: false })
 const emptyResult = (): Result => ({ who: null, item: null, addons: [], perks: emptySlots() })
 
 function pick<T>(items: T[]): T | null {
@@ -91,6 +93,7 @@ function Roulette(): React.JSX.Element {
   }
   const [result, setResult] = useState<Result>(emptyResult)
   const [locked, setLocked] = useState<boolean[]>(noLocks)
+  const [partLocks, setPartLocks] = useState<PartLocks>(noPartLocks)
   const [history, setHistory] = useState<string[]>([])
 
   const s = options.survivor
@@ -107,6 +110,7 @@ function Roulette(): React.JSX.Element {
     setRole(next)
     setResult(emptyResult())
     setLocked(noLocks())
+    setPartLocks(noPartLocks())
   }
 
   function roll(): void {
@@ -115,13 +119,22 @@ function Roulette(): React.JSX.Element {
     let addons: string[] = []
 
     if (role === 'survivor') {
-      if (s.character) who = pick(survivors)
-      if (s.item) item = pick(Object.keys(itemAddons))
-      if (item && s.addons) addons = pickMany(itemAddons[item] ?? [], ADDON_COUNT)
+      if (s.character) who = partLocks.who && result.who ? result.who : pick(survivors)
+      if (s.item) item = partLocks.item && result.item ? result.item : pick(Object.keys(itemAddons))
+      if (item && s.addons) {
+        const keep = partLocks.addons && partLocks.item && result.addons.length > 0
+        addons = keep ? result.addons : pickMany(itemAddons[item] ?? [], ADDON_COUNT)
+      }
     } else if (k.killer) {
       const names = killers.map((killer) => killer.name)
-      who = pick(k.noRepeat && names.length > 1 ? names.filter((n) => n !== result.who) : names)
-      if (who && k.addons) addons = pickMany(killerAddons[who] ?? [], ADDON_COUNT)
+      who =
+        partLocks.who && result.who
+          ? result.who
+          : pick(k.noRepeat && names.length > 1 ? names.filter((n) => n !== result.who) : names)
+      if (who && k.addons) {
+        const keep = partLocks.addons && partLocks.who && result.addons.length > 0
+        addons = keep ? result.addons : pickMany(killerAddons[who] ?? [], ADDON_COUNT)
+      }
     }
 
     const wantsPerks = role === 'survivor' ? s.perks : k.perks
@@ -131,6 +144,28 @@ function Roulette(): React.JSX.Element {
     setResult(next)
     const line = describe(role, next)
     if (line) setHistory([line, ...history].slice(0, 5))
+  }
+
+  // add-ons can only stay locked while the item (survivor) or the killer is locked too
+  function togglePart(part: keyof PartLocks): void {
+    const next = { ...partLocks, [part]: !partLocks[part] }
+    const parent = role === 'survivor' ? 'item' : 'who'
+    if (part === parent && !next[parent]) next.addons = false
+    setPartLocks(next)
+  }
+
+  function partLockButton(props: { part: keyof PartLocks; disabled?: boolean }): React.JSX.Element {
+    const on = partLocks[props.part]
+    return (
+      <button
+        className={'slot-lock' + (on ? ' on' : '')}
+        onClick={() => togglePart(props.part)}
+        disabled={props.disabled}
+        aria-label={on ? 'Unlock' : 'Lock'}
+      >
+        {on ? <IconLock size={16} stroke={1.5} /> : <IconLockOpen size={16} stroke={1.5} />}
+      </button>
+    )
   }
 
   function toggleLock(index: number): void {
@@ -165,18 +200,24 @@ function Roulette(): React.JSX.Element {
               <div className="roulette-line">
                 <small>{role === 'survivor' ? 'Survivor' : 'Killer'}</small>
                 <strong>{result.who}</strong>
+                {partLockButton({ part: 'who' })}
               </div>
             )}
             {result.item && (
               <div className="roulette-line">
                 <small>Item</small>
                 <strong>{result.item}</strong>
+                {partLockButton({ part: 'item' })}
               </div>
             )}
             {result.addons.length > 0 && (
               <div className="roulette-line">
                 <small>Add-ons</small>
                 <strong>{result.addons.join(', ')}</strong>
+                {partLockButton({
+                  part: 'addons',
+                  disabled: !(role === 'survivor' ? partLocks.item : partLocks.who)
+                })}
               </div>
             )}
             {!line && <div className="killer-hint">Press Roll to get a random setup.</div>}
@@ -221,7 +262,7 @@ function Roulette(): React.JSX.Element {
           </div>
         </Card>
 
-        <Card title="History" help="Your latest rolls.">
+        <Card title="History" collapsible help="Your latest rolls.">
           {history.length === 0 ? (
             <div className="history-line">Your rolls will show up here.</div>
           ) : (
@@ -236,7 +277,7 @@ function Roulette(): React.JSX.Element {
 
       <Card
         title="What to roll"
-        help="Switch off the parts you do not want to roll. Locked perks stay when you roll again."
+        help="Switch off the parts you do not want to roll. Locked perks, characters, items and add-ons stay when you roll again. Add-ons can only be locked while their item or killer is locked."
       >
         {role === 'survivor' ? (
           <>

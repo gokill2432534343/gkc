@@ -2707,3 +2707,31 @@ input:focus-visible,
 .roulette-line strong {
   font-weight: 600;
 }
+
+/* Collapsible cards */
+.card-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.card-toggle:hover {
+  color: var(--text-2);
+}
+.card-chevron {
+  transition: transform 0.15s ease;
+  transform: rotate(-90deg);
+}
+.card-chevron.open {
+  transform: rotate(0deg);
+}
+.roulette-line .slot-lock {
+  margin-left: auto;
+}

@@ -224,7 +224,7 @@ function ReshadePresets(): React.JSX.Element {
 
       {oldRealmKeys.length > 0 && (
         <Card
-          title="Older realm presets"
+          title="Older realm presets" collapsible
           help="Presets you saved for a whole realm in an earlier version. They still work for maps without their own preset. Clear them if you no longer want them."
         >
           {oldRealmKeys.map((item) => (

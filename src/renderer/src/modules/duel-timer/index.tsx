@@ -198,7 +198,7 @@ function DuelTimer(): React.JSX.Element {
       </Card>
 
       <Card
-        title="Look"
+        title="Look" collapsible
         help="Colours of the 1v1 timer on the overlay and in OBS. Click a colour for the active player, and choose how the name boxes look."
       >
         <p className="timer-hint">
@@ -242,7 +242,7 @@ function DuelTimer(): React.JSX.Element {
       </Card>
 
       <Card
-        title="Proximity warning"
+        title="Proximity warning" collapsible
         help="Warns you when your clock gets close to the other player's time, so you know when to finish the round. The time turns amber, then red."
       >
         <div className="switch-row">

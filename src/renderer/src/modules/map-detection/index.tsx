@@ -84,7 +84,7 @@ function MapDetection(): React.JSX.Element {
         </Card>
 
         <Card
-          title="Tuning"
+          title="Tuning" collapsible
           help="Only change these if detection does not find your map. They tell GKC where on the screen to look."
         >
           <AreaEditor
@@ -119,7 +119,7 @@ function MapDetection(): React.JSX.Element {
           </p>
         </Card>
         <Card
-          title="Choose a map yourself"
+          title="Choose a map yourself" collapsible
           help="If detection picks the wrong map or you prefer to choose, pick a realm, then a map, and press Show on overlay."
         >
           <ManualMap />

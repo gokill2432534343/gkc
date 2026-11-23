@@ -247,7 +247,7 @@ function StreakTracker(): React.JSX.Element {
         </Card>
 
         <Card
-          title="Your stats"
+          title="Your stats" collapsible
           help="Win rates for each killer and map, built from the results you recorded. Use the buttons to look at all games, only killer games or only survivor games."
         >
           <div className="seg">
@@ -303,7 +303,7 @@ function StreakTracker(): React.JSX.Element {
         </p>
       </div>
 
-      <Card title="Options" help="Settings for the streak tracker.">
+      <Card title="Options" collapsible help="Settings for the streak tracker.">
         <div className="switch-row">
           <span>
             Show on overlay

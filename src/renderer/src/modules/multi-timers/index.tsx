@@ -131,7 +131,7 @@ function MultiTimers(): React.JSX.Element {
         </p>
       </div>
 
-      <Card title="Options">
+      <Card title="Options" collapsible>
         <div className="switch-row">
           <span>
             Show on overlay
