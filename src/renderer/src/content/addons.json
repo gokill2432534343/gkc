@@ -1,11 +1,11 @@
 {
   "items": {
     "Firecrackers": [],
-    "Flashlight": ["Battery","Leather Grip","Power Bulb","Wide Lens","Focus Lens","Heavy Duty Battery","Low Amp Filament","Rubber Grip","TIR Optic","Intense Halogen","Long Life Battery","High-End Sapphire Lens","Odd Bulb","Broken Bulb"],
+    "Flashlight": ["Battery","Leather Grip","Power Bulb","Wide Lens","Focus Lens","Heavy Duty Battery","Low Amp Filament","Rubber Grip","TIR Optic","Intense Halogen","Long Life Battery","High-End Sapphire Lens","Odd Bulb"],
     "Fog Vial": ["Volcanic Stone","Reactive Compound","Oily Sap","Mushroom Formula","Potent Extract"],
     "Key": ["Friendship Charm","Shrill Whistle","Braided Bauble","Unique Wedding Ring","Blood Amber"],
     "Map": ["Glowing Ink","Gnarled Compass","Battered Tape","Sharpened Flint","Crimson Stamp"],
-    "Med-Kit": ["Bandages","Butterfly Tape","Rubber Gloves","Medical Scissors","Needle & Thread","Self Adherent Wrap","Sponge","Gauze Roll","Surgical Suture","Abdominal Dressing","Styptic Agent","Anti-Exhaustion Syringe","Gel Dressings","Refined Serum"],
+    "Med-Kit": ["Bandages","Butterfly Tape","Rubber Gloves","Medical Scissors","Needle & Thread","Self Adherent Wrap","Sponge","Gauze Roll","Surgical Suture","Abdominal Dressing","Styptic Agent","Anti-Exhaustion Syringe","Gel Dressings"],
     "Toolbox": ["Clean Rag","Instructions","Scraps","Cutting Wire","Protective Gloves","Socket Swivels","Spring Clamp","Wire Spool","Grip Wrench","Hacksaw","Brand New Part"]
   },
   "killers": {
