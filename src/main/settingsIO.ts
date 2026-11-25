@@ -89,9 +89,9 @@ const GROUPS: Group[] = [
   {
     id: 'look',
     label: 'Look',
-    hint: 'Style and interface size',
+    hint: 'Colors, style, spacing and interface size',
     files: ['ui.json'],
-    local: ['gkc.theme']
+    local: ['gkc.theme', 'gkc.palette', 'gkc.glow', 'gkc.accent', 'gkc.density', 'gkc.round']
   }
 ]
 

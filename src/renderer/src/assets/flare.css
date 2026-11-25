@@ -5,30 +5,36 @@ html[data-theme='flare'] {
   --radius-s: 3px;
   --flare-font: Bahnschrift, 'Segoe UI Variable Display', 'Segoe UI', system-ui, sans-serif;
   --accent-hot: #e0504f;
-  --glow: 0 0 14px rgba(179, 58, 58, 0.55);
+  --glow: 0 0 14px rgba(var(--accent-rgb), 0.55);
   --bg: #111113;
   --bg-sidebar: #0c0c0e;
   --bg-card: #19191c;
   --border: #29292d;
+  --bar-a: #0f0f11;
+  --bar-b: #0c0c0e;
+  --card-top: #1c1c1f;
+  --card-bot: #171719;
+  --input-bg: #131315;
+  --fill-2: #26262a;
 }
 
 /* Background: dark graphite, a little grain, a red glow in the corner, dark edges */
 html[data-theme='flare'] body {
   background:
-    radial-gradient(1000px 520px at 92% -10%, rgba(179, 58, 58, 0.16), transparent 62%),
-    radial-gradient(700px 420px at -10% 110%, rgba(179, 58, 58, 0.07), transparent 65%),
+    radial-gradient(1000px 520px at 92% -10%, var(--glow-a), transparent 62%),
+    radial-gradient(700px 420px at -10% 110%, var(--glow-b), transparent 65%),
     url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.045'/></svg>"),
     var(--bg);
 }
 
 /* Title bar and sidebar */
 html[data-theme='flare'] .titlebar {
-  background: linear-gradient(180deg, #0f0f11, #0c0c0e);
+  background: linear-gradient(180deg, var(--bar-a), var(--bar-b));
   border-bottom: 1px solid transparent;
   border-image: linear-gradient(
       90deg,
-      rgba(179, 58, 58, 0.9),
-      rgba(179, 58, 58, 0.15) 45%,
+      rgba(var(--accent-rgb), 0.9),
+      rgba(var(--accent-rgb), 0.15) 45%,
       transparent
     )
     1;
@@ -40,8 +46,8 @@ html[data-theme='flare'] .titlebar-name {
   color: var(--text);
 }
 html[data-theme='flare'] .nav {
-  background: linear-gradient(180deg, #0e0e10, #0a0a0c);
-  border-right: 1px solid #1d1d21;
+  background: linear-gradient(180deg, var(--bar-a), var(--bar-b));
+  border-right: 1px solid var(--border);
 }
 html[data-theme='flare'] .nav-item {
   font-family: var(--flare-font);
@@ -49,11 +55,11 @@ html[data-theme='flare'] .nav-item {
   border-radius: 2px;
 }
 html[data-theme='flare'] .nav-item:hover {
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--hover-tint);
 }
 html[data-theme='flare'] .nav-item.active {
-  background: linear-gradient(90deg, rgba(179, 58, 58, 0.28), rgba(179, 58, 58, 0.04));
-  color: #fff;
+  background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.28), rgba(var(--accent-rgb), 0.04));
+  color: var(--t-strong);
 }
 html[data-theme='flare'] .nav-item.active::before {
   left: -8px;
@@ -62,8 +68,8 @@ html[data-theme='flare'] .nav-item.active::before {
   box-shadow: var(--glow);
 }
 html[data-theme='flare'] .nav-item.active svg {
-  color: #e86a69;
-  filter: drop-shadow(0 0 5px rgba(224, 80, 79, 0.6));
+  color: var(--hot-soft);
+  filter: drop-shadow(0 0 5px rgba(var(--hot-rgb), 0.6));
 }
 
 /* Headings: condensed, upper case, with a red slash */
@@ -83,7 +89,7 @@ html[data-theme='flare'] .page-title h1::before {
   top: 3px;
   bottom: 3px;
   width: 5px;
-  background: linear-gradient(180deg, var(--accent-hot), #7d2323);
+  background: linear-gradient(180deg, var(--accent-hot), var(--accent-deep));
   transform: skewX(-18deg);
   box-shadow: var(--glow);
 }
@@ -97,12 +103,12 @@ html[data-theme='flare'] .crumbs {
 html[data-theme='flare'] .card {
   position: relative;
   border-radius: 3px;
-  border-color: #28282c;
-  border-left: 2px solid rgba(179, 58, 58, 0.75);
-  background: linear-gradient(180deg, #1c1c1f 0%, #171719 100%);
+  border-color: var(--border);
+  border-left: 2px solid rgba(var(--accent-rgb), 0.75);
+  background: linear-gradient(180deg, var(--card-top) 0%, var(--card-bot) 100%);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 10px 26px rgba(0, 0, 0, 0.35);
+    0 10px 26px var(--shade);
 }
 html[data-theme='flare'] .card::after {
   content: '';
@@ -111,8 +117,8 @@ html[data-theme='flare'] .card::after {
   bottom: 6px;
   width: 9px;
   height: 9px;
-  border-right: 1px solid rgba(179, 58, 58, 0.6);
-  border-bottom: 1px solid rgba(179, 58, 58, 0.6);
+  border-right: 1px solid rgba(var(--accent-rgb), 0.6);
+  border-bottom: 1px solid rgba(var(--accent-rgb), 0.6);
   pointer-events: none;
 }
 html[data-theme='flare'] .card-title {
@@ -120,7 +126,7 @@ html[data-theme='flare'] .card-title {
   font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #c9c9ce;
+  color: var(--t-mid);
 }
 html[data-theme='flare'] .card-title::before {
   content: '/';
@@ -132,20 +138,20 @@ html[data-theme='flare'] .card-title::before {
 /* Tiles and rows */
 html[data-theme='flare'] .tile {
   border-radius: 3px;
-  background: linear-gradient(180deg, #1c1c1f, #171719);
-  border-left: 2px solid rgba(179, 58, 58, 0.55);
+  background: linear-gradient(180deg, var(--card-top), var(--card-bot));
+  border-left: 2px solid rgba(var(--accent-rgb), 0.55);
 }
 html[data-theme='flare'] .tile:hover {
-  border-color: rgba(224, 80, 79, 0.7);
+  border-color: rgba(var(--hot-rgb), 0.7);
   box-shadow:
-    0 8px 22px rgba(0, 0, 0, 0.4),
-    0 0 18px rgba(179, 58, 58, 0.18);
+    0 8px 22px var(--shade),
+    0 0 18px rgba(var(--accent-rgb), 0.18);
 }
 html[data-theme='flare'] .row.selected,
 html[data-theme='flare'] .row-link.selected {
-  background: linear-gradient(90deg, rgba(179, 58, 58, 0.26), rgba(179, 58, 58, 0.05));
+  background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.26), rgba(var(--accent-rgb), 0.05));
   box-shadow: inset 2px 0 0 var(--accent-hot);
-  color: #f0a0a0;
+  color: var(--accent-text);
 }
 
 /* Buttons: primary ones are slanted, the rest are sharp */
@@ -165,31 +171,31 @@ html[data-theme='flare'] .btn {
 }
 html[data-theme='flare'] .btn.primary {
   border: none;
-  background: linear-gradient(180deg, #cc4a49 0%, #a23030 100%);
+  background: linear-gradient(180deg, var(--hot-top) 0%, var(--hot-bot) 100%);
   clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
   padding-left: 22px;
   padding-right: 22px;
   box-shadow: none;
-  filter: drop-shadow(0 3px 8px rgba(179, 58, 58, 0.4));
+  filter: drop-shadow(0 3px 8px rgba(var(--accent-rgb), 0.4));
 }
 html[data-theme='flare'] .btn.primary:hover {
-  background: linear-gradient(180deg, #dc5857 0%, #b53a3a 100%);
+  background: linear-gradient(180deg, var(--btn-top) 0%, var(--hot-top) 100%);
 }
 html[data-theme='flare'] .btn:hover:not(.primary):not(:disabled) {
-  border-color: rgba(224, 80, 79, 0.7);
-  color: #fff;
+  border-color: rgba(var(--hot-rgb), 0.7);
+  color: var(--t-strong);
 }
 html[data-theme='flare'] .chip-btn.active,
 html[data-theme='flare'] .seg button.active {
-  background: linear-gradient(180deg, rgba(179, 58, 58, 0.35), rgba(179, 58, 58, 0.15));
+  background: linear-gradient(180deg, rgba(var(--accent-rgb), 0.35), rgba(var(--accent-rgb), 0.15));
   border-color: var(--accent-hot);
-  color: #fff;
-  box-shadow: 0 0 12px rgba(179, 58, 58, 0.25);
+  color: var(--t-strong);
+  box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.25);
 }
 
 /* Inputs, sliders, switches */
 html[data-theme='flare'] .map-filter {
-  background: #131315;
+  background: var(--input-bg);
 }
 html[data-theme='flare'] .map-filter:focus,
 html[data-theme='flare'] input:focus-visible,
@@ -200,14 +206,14 @@ html[data-theme='flare'] button:focus-visible {
 }
 html[data-theme='flare'] .sw {
   border-radius: 3px;
-  background: #26262a;
+  background: var(--fill-2);
 }
 html[data-theme='flare'] .sw::after {
   border-radius: 2px;
 }
 html[data-theme='flare'] .sw.on {
-  background: linear-gradient(180deg, #cc4a49, #a23030);
-  box-shadow: 0 0 12px rgba(179, 58, 58, 0.5);
+  background: linear-gradient(180deg, var(--hot-top), var(--hot-bot));
+  box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.5);
 }
 html[data-theme='flare'] input[type='range'] {
   accent-color: var(--accent-hot);
@@ -220,22 +226,22 @@ html[data-theme='flare'] .settings-nav button {
   border-radius: 2px;
 }
 html[data-theme='flare'] .settings-nav button.active {
-  background: linear-gradient(90deg, rgba(179, 58, 58, 0.3), rgba(179, 58, 58, 0.05));
+  background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.3), rgba(var(--accent-rgb), 0.05));
   box-shadow: inset 2px 0 0 var(--accent-hot);
-  color: #fff;
+  color: var(--t-strong);
 }
 
 /* Big numbers (timers) get the same condensed face and a faint glow */
 html[data-theme='flare'] .timer-big,
 html[data-theme='flare'] .control-time {
-  text-shadow: 0 0 22px rgba(179, 58, 58, 0.35);
+  text-shadow: 0 0 22px rgba(var(--accent-rgb), 0.35);
 }
 
 /* Scrollbars */
 html[data-theme='flare'] ::-webkit-scrollbar-thumb:hover {
-  background: rgba(179, 58, 58, 0.7);
+  background: rgba(var(--accent-rgb), 0.7);
 }
 
 html[data-theme='flare'] ::selection {
-  background: rgba(224, 80, 79, 0.5);
+  background: rgba(var(--hot-rgb), 0.5);
 }

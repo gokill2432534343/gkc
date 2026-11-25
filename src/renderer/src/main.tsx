@@ -1,6 +1,7 @@
 // Copyright (c) 2026 gokill. PolyForm Noncommercial License 1.0.0, see LICENSE.
 import './assets/main.css'
 import './assets/flare.css'
+import './assets/palette.css'
 
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'

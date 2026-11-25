@@ -29,7 +29,8 @@ Windows 10 or 11 (64-bit) only.
 - **1v1 timer:** names, score and timers for 1v1 matches, with different looks.
 - **Streak tracker, crosshair, timers, unhook timer:** small tools for streaks and win rates, a custom crosshair, and countdowns on the overlay.
 - **Save timers:** a red, yellow and green bar on the overlay that counts up from your hotkey press and tells you when to throw the flashbang, use the flashlight or hit the pallet. Comes with presets for common saves (locker, pallet, grabs, some killer-specific pickups) and you can edit the timings yourself. The bar can be always visible or only appear when you start a timer.
-- **Builds:** a build creator for perks, survivor items and add-ons or killer add-ons, and a roulette that rolls a random survivor or killer setup (character, item, add-ons and perks, every part can be switched off).
+- **Builds:** a build creator for perks, survivor items and add-ons or killer add-ons, and a roulette that rolls a random survivor or killer setup (character, item, add-ons and perks, every part can be switched off or locked).
+- **Look:** seven color themes (Classic, Night, Amber, Forest, Violet, Mono, Daylight), your own accent color, glow, spacing and corner options. You can copy your look as a short code and send it to a friend. It is in **Settings, General**.
 - **Stream overlays (OBS):** the overlays as browser sources for your stream. This is off until you turn it on, and it only listens on your own computer.
 - **Backup:** save your whole setup to a file and load it on another PC.
 

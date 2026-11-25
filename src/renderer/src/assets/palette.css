@@ -1,0 +1,148 @@
+/* GKC colour themes. Each one only sets variables. "classic" (the red default) is the :root set
+   in main.css, so it has no block here. Used by the main window only, the overlays stay plain. */
+
+html[data-palette='night'] {
+  --bg: #0e0f13; --bg-sidebar: #0a0b0e; --bg-card: #16181e; --bg-hover: #1c1f27;
+  --border: #262a33; --border-strong: #363b47;
+  --text: #e9ecf2; --text-2: #9aa2b2; --text-3: #687082;
+  --accent: #3b74c4; --accent-hover: #5b93e0; --accent-soft: #7aa5e8;
+  --accent-bg: rgba(59, 116, 196, 0.16); --accent-rgb: 59, 116, 196; --hot-rgb: 91, 147, 224;
+  --accent-hot: #5b93e0; --accent-text: #7aa5e8; --accent-deep: #2f62a8; --hot-soft: #7aa5e8;
+  --btn-top: #4a82d2; --btn-bot: #2f62a8; --hot-top: #4a82d2; --hot-bot: #2f62a8;
+  --on-accent: #fff; --t-strong: #fff;
+  --t-hi: #e9ecf2; --t-mid: #9aa2b2; --t-lo: #687082;
+  --line-2: #363b47; --line-3: #363b47; --fill-2: #262a33;
+  --input-bg: #0a0b0e; --bar-a: #0a0b0e; --bar-b: #0a0b0e;
+  --card-top: #1c1f27; --card-bot: #16181e;
+  --hover-tint: rgba(255, 255, 255, 0.04);
+  --shade: rgba(0, 0, 0, 0.35);
+  --glow-a: rgba(59, 116, 196, calc(0.16 * var(--glow-k)));
+  --glow-b: rgba(255, 255, 255, calc(0.06 * var(--glow-k)));
+  --glow-c: rgba(59, 116, 196, calc(0.075 * var(--glow-k)));
+}
+
+html[data-palette='amber'] {
+  --bg: #141210; --bg-sidebar: #100e0c; --bg-card: #1c1917; --bg-hover: #221e1b;
+  --border: #2c2723; --border-strong: #3d362f;
+  --text: #f2ede6; --text-2: #a39a8e; --text-3: #7a7266;
+  --accent: #e0883a; --accent-hover: #f09a4c; --accent-soft: #eba362;
+  --accent-bg: rgba(224, 136, 58, 0.16); --accent-rgb: 224, 136, 58; --hot-rgb: 240, 154, 76;
+  --accent-hot: #f09a4c; --accent-text: #eba362; --accent-deep: #c9702a; --hot-soft: #eba362;
+  --btn-top: #ec9744; --btn-bot: #c9702a; --hot-top: #ec9744; --hot-bot: #c9702a;
+  --on-accent: #1a1208; --t-strong: #fff;
+  --t-hi: #f2ede6; --t-mid: #a39a8e; --t-lo: #7a7266;
+  --line-2: #3d362f; --line-3: #3d362f; --fill-2: #2c2723;
+  --input-bg: #100e0c; --bar-a: #100e0c; --bar-b: #100e0c;
+  --card-top: #221e1b; --card-bot: #1c1917;
+  --hover-tint: rgba(255, 255, 255, 0.04);
+  --shade: rgba(0, 0, 0, 0.35);
+  --glow-a: rgba(224, 136, 58, calc(0.16 * var(--glow-k)));
+  --glow-b: rgba(255, 248, 238, calc(0.07 * var(--glow-k)));
+  --glow-c: rgba(224, 136, 58, calc(0.075 * var(--glow-k)));
+}
+
+html[data-palette='forest'] {
+  --bg: #0f1411; --bg-sidebar: #0b100d; --bg-card: #151c17; --bg-hover: #1b231d;
+  --border: #26312a; --border-strong: #35443a;
+  --text: #e8efe9; --text-2: #98a89c; --text-3: #6c7c70;
+  --accent: #4caf7d; --accent-hover: #62c590; --accent-soft: #7fcf9f;
+  --accent-bg: rgba(76, 175, 125, 0.16); --accent-rgb: 76, 175, 125; --hot-rgb: 98, 197, 144;
+  --accent-hot: #62c590; --accent-text: #7fcf9f; --accent-deep: #3a9266; --hot-soft: #7fcf9f;
+  --btn-top: #58bb87; --btn-bot: #3a9266; --hot-top: #58bb87; --hot-bot: #3a9266;
+  --on-accent: #0b1a12; --t-strong: #fff;
+  --t-hi: #e8efe9; --t-mid: #98a89c; --t-lo: #6c7c70;
+  --line-2: #35443a; --line-3: #35443a; --fill-2: #26312a;
+  --input-bg: #0b100d; --bar-a: #0b100d; --bar-b: #0b100d;
+  --card-top: #1b231d; --card-bot: #151c17;
+  --hover-tint: rgba(255, 255, 255, 0.04);
+  --shade: rgba(0, 0, 0, 0.35);
+  --glow-a: rgba(76, 175, 125, calc(0.16 * var(--glow-k)));
+  --glow-b: rgba(240, 255, 245, calc(0.06 * var(--glow-k)));
+  --glow-c: rgba(76, 175, 125, calc(0.075 * var(--glow-k)));
+}
+
+html[data-palette='violet'] {
+  --bg: #121018; --bg-sidebar: #0e0c14; --bg-card: #19161f; --bg-hover: #201c28;
+  --border: #2c2736; --border-strong: #3d364a;
+  --text: #eeeaf4; --text-2: #a49cb4; --text-3: #776f88;
+  --accent: #7a5bd0; --accent-hover: #9378e0; --accent-soft: #a995e6;
+  --accent-bg: rgba(122, 91, 208, 0.16); --accent-rgb: 122, 91, 208; --hot-rgb: 147, 120, 224;
+  --accent-hot: #9378e0; --accent-text: #a995e6; --accent-deep: #6446b8; --hot-soft: #a995e6;
+  --btn-top: #8767da; --btn-bot: #6446b8; --hot-top: #8767da; --hot-bot: #6446b8;
+  --on-accent: #fff; --t-strong: #fff;
+  --t-hi: #eeeaf4; --t-mid: #a49cb4; --t-lo: #776f88;
+  --line-2: #3d364a; --line-3: #3d364a; --fill-2: #2c2736;
+  --input-bg: #0e0c14; --bar-a: #0e0c14; --bar-b: #0e0c14;
+  --card-top: #201c28; --card-bot: #19161f;
+  --hover-tint: rgba(255, 255, 255, 0.04);
+  --shade: rgba(0, 0, 0, 0.35);
+  --glow-a: rgba(122, 91, 208, calc(0.16 * var(--glow-k)));
+  --glow-b: rgba(248, 244, 255, calc(0.06 * var(--glow-k)));
+  --glow-c: rgba(122, 91, 208, calc(0.075 * var(--glow-k)));
+}
+
+html[data-palette='mono'] {
+  --bg: #101010; --bg-sidebar: #0b0b0b; --bg-card: #171717; --bg-hover: #1e1e1e;
+  --border: #2a2a2a; --border-strong: #3b3b3b;
+  --text: #efefef; --text-2: #a0a0a0; --text-3: #707070;
+  --accent: #d9d9de; --accent-hover: #f2f2f5; --accent-soft: #e4e4e8;
+  --accent-bg: rgba(217, 217, 222, 0.16); --accent-rgb: 217, 217, 222; --hot-rgb: 242, 242, 245;
+  --accent-hot: #f2f2f5; --accent-text: #e4e4e8; --accent-deep: #bdbdc4; --hot-soft: #e4e4e8;
+  --btn-top: #e6e6ea; --btn-bot: #bdbdc4; --hot-top: #e6e6ea; --hot-bot: #bdbdc4;
+  --on-accent: #111; --t-strong: #fff;
+  --t-hi: #efefef; --t-mid: #a0a0a0; --t-lo: #707070;
+  --line-2: #3b3b3b; --line-3: #3b3b3b; --fill-2: #2a2a2a;
+  --input-bg: #0b0b0b; --bar-a: #0b0b0b; --bar-b: #0b0b0b;
+  --card-top: #1e1e1e; --card-bot: #171717;
+  --hover-tint: rgba(255, 255, 255, 0.04);
+  --shade: rgba(0, 0, 0, 0.35);
+  --glow-a: rgba(217, 217, 222, calc(0.10 * var(--glow-k)));
+  --glow-b: rgba(255, 255, 255, calc(0.06 * var(--glow-k)));
+  --glow-c: rgba(217, 217, 222, calc(0.06 * var(--glow-k)));
+}
+
+html[data-palette='daylight'] {
+  --bg: #f3f0ea; --bg-sidebar: #ebe7df; --bg-card: #fffdf9; --bg-hover: #f7f4ee;
+  --border: #ddd7cb; --border-strong: #c9c2b3;
+  --text: #1b1a18; --text-2: #5f5a52; --text-3: #8a8478;
+  --accent: #2b2b31; --accent-hover: #3a3a42; --accent-soft: #2b2b31;
+  --accent-bg: rgba(43, 43, 49, 0.16); --accent-rgb: 43, 43, 49; --hot-rgb: 58, 58, 66;
+  --accent-hot: #3a3a42; --accent-text: #2b2b31; --accent-deep: #1f1f24; --hot-soft: #2b2b31;
+  --btn-top: #3a3a42; --btn-bot: #1f1f24; --hot-top: #3a3a42; --hot-bot: #1f1f24;
+  --on-accent: #fff; --t-strong: #111;
+  --t-hi: #1b1a18; --t-mid: #5f5a52; --t-lo: #8a8478;
+  --line-2: #c9c2b3; --line-3: #c9c2b3; --fill-2: #ddd7cb;
+  --input-bg: #ebe7df; --bar-a: #ebe7df; --bar-b: #ebe7df;
+  --card-top: #f7f4ee; --card-bot: #fffdf9;
+  --hover-tint: rgba(0, 0, 0, 0.05);
+  --shade: rgba(60, 50, 30, 0.10);
+  --glow-a: rgba(43, 43, 49, calc(0.26 * var(--glow-k)));
+  --glow-b: rgba(70, 70, 80, calc(0.18 * var(--glow-k)));
+  --glow-c: rgba(43, 43, 49, calc(0.2 * var(--glow-k)));
+}
+
+html[data-palette='daylight'] { color-scheme: light; --shadow-card: 0 1px 2px rgba(60, 50, 30, 0.06), 0 8px 24px rgba(60, 50, 30, 0.08); }
+html[data-palette='daylight'] .nav-item.active { background: rgba(43, 43, 49, 0.1); }
+
+/* Spacing and corner choices (Settings, General). "cozy" and "default" are the normal look. */
+html[data-density='compact'] .content { padding: 18px 22px; }
+html[data-density='compact'] .card { padding: 8px; }
+html[data-density='compact'] .module-grid { gap: 8px; }
+html[data-density='roomy'] .content { padding: 38px 46px; }
+html[data-density='roomy'] .card { padding: 18px; }
+html[data-density='roomy'] .module-grid { gap: 18px; }
+
+html[data-round='square'] .card,
+html[data-round='square'] .tile,
+html[data-round='square'] .btn,
+html[data-round='square'] .chip-btn,
+html[data-round='square'] .seg,
+html[data-round='square'] .seg button,
+html[data-round='square'] .map-filter { border-radius: 0; }
+html[data-round='round'] .card,
+html[data-round='round'] .tile { border-radius: 16px; }
+html[data-round='round'] .btn,
+html[data-round='round'] .chip-btn,
+html[data-round='round'] .seg,
+html[data-round='round'] .seg button,
+html[data-round='round'] .map-filter { border-radius: 10px; }

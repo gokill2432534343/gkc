@@ -6,8 +6,11 @@ import AboutPanel from '../ui/AboutPanel'
 import BackupCard from '../ui/BackupCard'
 import IdeaPanel from '../ui/IdeaPanel'
 import HotkeyInput from '../ui/HotkeyInput'
-import { getTheme, setTheme } from '../core/theme'
-import type { Theme } from '../core/theme'
+import {
+  DENSITIES, PALETTES, ROUNDS, exportLook, getAccent, getDensity, getGlow, getPalette, getRound,
+  getTheme, importLook, setAccent, setDensity, setGlow, setPalette, setRound, setTheme
+} from '../core/theme'
+import type { Density, Palette, Round, Theme } from '../core/theme'
 import { useUpdate } from '../core/useUpdate'
 import { categories } from '../core/categories'
 import { getIcon } from '../core/icons'
@@ -134,6 +137,13 @@ function Settings({
 
   const [uiScale, setUiScale] = useState(1.2)
   const [theme, setThemeState] = useState<Theme>(getTheme())
+  const [palette, setPaletteState] = useState<Palette>(getPalette())
+  const [glow, setGlowState] = useState(getGlow())
+  const [accent, setAccentState] = useState(getAccent())
+  const [density, setDensityState] = useState<Density>(getDensity())
+  const [round, setRoundState] = useState<Round>(getRound())
+  const [code, setCode] = useState('')
+  const [codeNote, setCodeNote] = useState('')
 
   useEffect(() => {
     window.api.hotkeys.get().then(setHotkeys)
@@ -143,6 +153,51 @@ function Settings({
   function changeTheme(value: Theme): void {
     setThemeState(value)
     setTheme(value)
+  }
+
+  function changePalette(value: Palette): void {
+    setPaletteState(value)
+    setPalette(value)
+  }
+
+  function changeGlow(value: number): void {
+    setGlowState(value)
+    setGlow(value)
+  }
+
+  function changeAccent(value: string): void {
+    setAccentState(value)
+    setAccent(value)
+  }
+
+  function changeDensity(value: Density): void {
+    setDensityState(value)
+    setDensity(value)
+  }
+
+  function changeRound(value: Round): void {
+    setRoundState(value)
+    setRound(value)
+  }
+
+  function copyCode(): void {
+    void navigator.clipboard.writeText(exportLook())
+    setCodeNote('Copied. Send it to a friend.')
+  }
+
+  function applyCode(): void {
+    if (!importLook(code)) {
+      setCodeNote('That code does not work.')
+      return
+    }
+    setThemeState(getTheme())
+    setPaletteState(getPalette())
+    setGlowState(getGlow())
+    setAccentState(getAccent())
+    setDensityState(getDensity())
+    setRoundState(getRound())
+    setCode('')
+    setCodeNote('Look applied.')
   }
 
   function changeScale(value: number): void {
@@ -199,9 +254,116 @@ function Settings({
             <Card>
               <div className="setting-row">
                 <div className="setting-text">
-                  Style
-                  <Help text="Changes how GKC looks. Flare is the new look, Classic is the plain original design." />
-                  <small>Flare is the new look. Classic is the plain original.</small>
+                  Colors
+                  <Help text="Changes the colors of this window. Classic is the original red. The overlays are not changed." />
+                  <small>Pick a color theme for this window. The overlays keep their own look.</small>
+                </div>
+                <div className="timer-presets">
+                  {PALETTES.map((option) => (
+                    <button
+                      key={option}
+                      className={'chip-btn' + (palette === option ? ' active' : '')}
+                      onClick={() => changePalette(option)}
+                    >
+                      {option === 'classic' ? 'Classic' : option[0].toUpperCase() + option.slice(1)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="setting-row">
+                <div className="setting-text">
+                  Glow
+                  <Help text="How strong the soft colored light in the corners of the window is. Set it to 0 to turn it off." />
+                  <small>Strength of the colored light in the corners.</small>
+                </div>
+                <input
+                  type="range"
+                  min={0}
+                  max={2}
+                  step={0.1}
+                  value={glow}
+                  onChange={(e) => changeGlow(Number(e.target.value))}
+                />
+              </div>
+              <div className="setting-row">
+                <div className="setting-text">
+                  Accent color
+                  <Help text="Replaces the main color of the theme with your own. Reset goes back to the theme's color." />
+                  <small>Your own main color on top of the theme.</small>
+                </div>
+                <div className="timer-presets">
+                  <input
+                    type="color"
+                    value={accent || '#c0414a'}
+                    onChange={(e) => changeAccent(e.target.value)}
+                  />
+                  <button className="chip-btn" disabled={!accent} onClick={() => changeAccent('')}>
+                    Reset
+                  </button>
+                </div>
+              </div>
+              <div className="setting-row">
+                <div className="setting-text">
+                  Spacing
+                  <Help text="Compact fits more on screen. Roomy leaves more space around things." />
+                  <small>How much space there is around things.</small>
+                </div>
+                <div className="timer-presets">
+                  {DENSITIES.map((option) => (
+                    <button
+                      key={option}
+                      className={'chip-btn' + (density === option ? ' active' : '')}
+                      onClick={() => changeDensity(option)}
+                    >
+                      {option[0].toUpperCase() + option.slice(1)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="setting-row">
+                <div className="setting-text">
+                  Corners
+                  <Help text="How round the corners of cards and buttons are." />
+                  <small>How round cards and buttons are.</small>
+                </div>
+                <div className="timer-presets">
+                  {ROUNDS.map((option) => (
+                    <button
+                      key={option}
+                      className={'chip-btn' + (round === option ? ' active' : '')}
+                      onClick={() => changeRound(option)}
+                    >
+                      {option[0].toUpperCase() + option.slice(1)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="setting-row">
+                <div className="setting-text">
+                  Share your look
+                  <Help text="Copy a short code of your colors and spacing and send it to a friend. To use a friend's look, paste their code and press Apply." />
+                  <small>{codeNote || 'Copy your look as a code, or paste a friend\'s code.'}</small>
+                </div>
+                <div className="timer-presets">
+                  <button className="chip-btn" onClick={copyCode}>
+                    Copy code
+                  </button>
+                  <input
+                    className="map-filter"
+                    placeholder="Paste a code"
+                    value={code}
+                    onChange={(e) => setCode(e.target.value)}
+                  />
+                  <button className="chip-btn" disabled={!code.trim()} onClick={applyCode}>
+                    Apply
+                  </button>
+                </div>
+              </div>
+              <div className="setting-row">
+                <div className="setting-text">
+                  Shape
+                  <Help text="Sharp has slanted buttons and square corners. Soft is the plain design with rounded corners." />
+                  <small>Sharp is angular. Soft is plain and rounded.</small>
                 </div>
                 <div className="timer-presets">
                   {(['flare', 'classic'] as Theme[]).map((option) => (
@@ -210,7 +372,7 @@ function Settings({
                       className={'chip-btn' + (theme === option ? ' active' : '')}
                       onClick={() => changeTheme(option)}
                     >
-                      {option === 'flare' ? 'Flare' : 'Classic'}
+                      {option === 'flare' ? 'Sharp' : 'Soft'}
                     </button>
                   ))}
                 </div>

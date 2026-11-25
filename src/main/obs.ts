@@ -11,6 +11,7 @@ import { getStreakState } from './streak'
 import { getLadderState } from './ladder'
 import { getTimersState } from './customTimers'
 import { getTimerState } from './timer'
+import { getSaveTimersState } from './saveTimers'
 import { getOverlayContent } from './overlay'
 import { pageHtml, PANELS } from './obsPage'
 
@@ -107,6 +108,7 @@ function snapshot(): string {
     ladder: getLadderState(),
     timers: getTimersState(),
     countdown: getTimerState(),
+    saveTimer: getSaveTimersState(),
     map: {
       visible: content.mapVisible && (file !== null || svgFromDataUrl(content.mapUrl) !== null),
       name: content.mapName,

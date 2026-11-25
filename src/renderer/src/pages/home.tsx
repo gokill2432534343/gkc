@@ -37,11 +37,12 @@ const goals = [
   },
   { tool: 'streak-tracker', icon: 'trophy', label: 'Track my wins', hint: 'Streaks and stats' },
   {
-    tool: 'builds',
+    tool: 'build-creator',
     icon: 'adjustments',
-    label: 'Builds and random rolls',
-    hint: 'Save perks, roll perks or a killer'
+    label: 'Build a perk loadout',
+    hint: 'Pick and save perks'
   },
+  { tool: 'perk-randomizer', icon: 'dice', label: 'Roll random perks', hint: 'For a challenge' },
   { tool: 'map-detection', icon: 'map', label: 'Show my map', hint: 'Detect it or pick it' },
   {
     tool: 'stream-overlays',
@@ -96,7 +97,7 @@ function Home({
           viewBox="0 0 260 56"
           aria-hidden="true"
         >
-          <g fill="none" stroke="#b33a3a" strokeWidth="1" opacity="0.28">
+          <g fill="none" style={{ stroke: 'rgb(var(--accent-rgb))' }} strokeWidth="1" opacity="0.28">
             <polyline points="260,0 210,28 260,56" />
             <polyline points="260,10 226,28 260,46" />
             <polyline points="260,20 242,28 260,36" />

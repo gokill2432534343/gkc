@@ -13,6 +13,7 @@ export const PANELS = [
   { id: 'ladderlist', label: 'Ladder recent matches' },
   { id: 'timers', label: 'Multi timers' },
   { id: 'countdown', label: 'Countdown timer' },
+  { id: 'savetimer', label: 'Save timer (shows while it runs)' },
   { id: 'map', label: 'Map' }
 ]
 
@@ -83,6 +84,13 @@ body.bg { background: rgba(20, 20, 22, 0.88); }
 .hero .number { font-size: 96px; font-weight: 700; line-height: 1; }
 .hero .label { font-size: 18px; color: #b9b9bf; margin-top: 6px; }
 .big-time { text-align: center; font-size: 96px; font-weight: 600; }
+.save { display: flex; align-items: baseline; gap: 14px; padding: 8px 16px; border-radius: 10px; color: #fff; min-width: 420px; }
+.save .sname { flex: 1; font-size: 20px; }
+.save .stime { font-size: 40px; }
+.save .slabel { min-width: 120px; text-align: right; font-size: 20px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+.save.wait, .save.late { background: #b3281b; }
+.save.ready { background: #c99512; color: #1a1400; }
+.save.now { background: #1f9d55; }
 img.map { display: block; width: 100%; height: calc(100vh - 16px); object-fit: contain; }
 `
 
@@ -265,6 +273,18 @@ const script = `
     return '<div class="panel big-time mono' + (c.running ? ' running' : '') + '">' + fmtClock(c.remaining) + '</div>';
   }
 
+  function renderSaveTimer(s) {
+    var t = null;
+    s.presets.forEach(function (p) { if (p.id === s.runningId) t = p; });
+    if (!t || s.startedAt === null) return '';
+    var sec = Math.max(now() - s.startedAt, 0) / 1000;
+    var cue = Math.max(t.target - t.lead, 0);
+    var phase = sec < Math.max(cue - t.ready, 0) ? 'wait' : sec < cue ? 'ready' : sec < cue + t.hold ? 'now' : 'late';
+    var label = { wait: 'Wait', ready: 'Get ready', now: 'NOW', late: 'Too late' }[phase];
+    return '<div class="panel save ' + phase + '"><span class="sname">' + esc(t.name) + '</span><span class="stime mono">' +
+      sec.toFixed(2) + '</span><span class="slabel">' + label + '</span></div>';
+  }
+
   function renderMap(m) {
     if (!m.visible) return '';
     return '<img class="map" style="opacity:' + m.opacity + '" alt="" src="/map-image?v=' + encodeURIComponent(m.version) + '">';
@@ -284,6 +304,7 @@ const script = `
     else if (panel === 'ladderlist') html = renderLadderList(snap.ladder);
     else if (panel === 'timers') html = renderTimers(snap.timers);
     else if (panel === 'countdown') html = renderCountdown(snap.countdown);
+    else if (panel === 'savetimer') html = renderSaveTimer(snap.saveTimer);
     else if (panel === 'map') html = renderMap(snap.map);
     if (html !== last) { root.innerHTML = html; last = html; }
   }

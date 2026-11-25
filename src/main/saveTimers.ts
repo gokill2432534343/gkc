@@ -2,6 +2,7 @@
 import { BrowserWindow, ipcMain } from 'electron'
 import { randomUUID } from 'crypto'
 import { readJson, writeJson } from './store'
+import { notifyChange } from './bus'
 
 // A save timer counts up from the moment you start it. The player has to act at "target".
 // Colours: red (wait), yellow (get ready), green (now), red again (too late). Green starts
@@ -78,6 +79,10 @@ export function setSaveTimerChangeHandler(handler: () => void): void {
   onChange = handler
 }
 
+export function getSaveTimersState(): SaveTimersState {
+  return { presets, runningId, startedAt }
+}
+
 export function saveTimerActive(): boolean {
   return runningId !== null
 }
@@ -111,6 +116,7 @@ function publish(persist: boolean): void {
     window.webContents.send('savetimers:state', state)
   }
   onChange()
+  notifyChange()
 }
 
 export function stopSaveTimer(): void {
